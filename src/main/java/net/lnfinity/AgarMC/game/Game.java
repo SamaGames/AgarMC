@@ -146,4 +146,9 @@ public class Game {
 	public int getTotalMass() {
 		return getStaticMass() + getPlayersMass();
 	}
+	
+	public void playerCellToStaticCell(PlayerCell playerCell) {
+		StaticCell cell = playerCell.toStaticCell();
+		addStaticCell(cell);
+	}
 }

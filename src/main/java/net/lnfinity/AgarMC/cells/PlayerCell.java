@@ -122,7 +122,7 @@ public class PlayerCell extends Cell {
 		if(mass >= 30) {
 			mass = mass / 2 - 1;
 			final PlayerCell cell = new PlayerCell(player, mass, getX(), getY(), false);
-			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(5);
+			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(3);
 			cell.setVelocity(vector);
 			cell.setCanMerge(false);
 			this.setCanMerge(false);
@@ -138,5 +138,11 @@ public class PlayerCell extends Cell {
 			
 			recalculateSize();
 		}
+	}
+	
+	public StaticCell toStaticCell() {
+		saddle.setPassenger(null);
+		saddle.remove();
+		return new StaticCell(mass, armorStand, slime);
 	}
 }

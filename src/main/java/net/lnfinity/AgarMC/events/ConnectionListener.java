@@ -1,6 +1,7 @@
 package net.lnfinity.AgarMC.events;
 
 import net.lnfinity.AgarMC.AgarMC;
+import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.game.CPlayer;
 
 import org.bukkit.entity.Player;
@@ -24,7 +25,12 @@ public class ConnectionListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
-		AgarMC.get().getGame().removePlayer(e.getPlayer());
+		CPlayer player = AgarMC.get().getGame().getCPlayer(e.getPlayer());
+		for(PlayerCell cell : player.getCells()) {
+			AgarMC.get().getGame().playerCellToStaticCell(cell);
+		}
+		
+		AgarMC.get().getGame().removePlayer(player);
 	}
 	
 }

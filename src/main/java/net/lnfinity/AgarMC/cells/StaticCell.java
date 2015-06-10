@@ -1,5 +1,8 @@
 package net.lnfinity.AgarMC.cells;
 
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Slime;
+
 import net.lnfinity.AgarMC.cells.core.Cell;
 
 public class StaticCell extends Cell {
@@ -10,6 +13,12 @@ public class StaticCell extends Cell {
 	
 	public StaticCell(double x, double y) {
 		super(1, x, y);
+	}
+	
+	public StaticCell(int mass, ArmorStand armorStand, Slime slime) {
+		super(mass, armorStand, slime);
+		
+		recalculateSize();
 	}
 
 }

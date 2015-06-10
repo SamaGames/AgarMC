@@ -4,6 +4,7 @@ import net.lnfinity.AgarMC.AgarMC;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.util.Vector;
 
@@ -28,6 +29,13 @@ public abstract class Cell {
 		armorStand.setPassenger(slime);
 		
 		recalculateSize();
+	}
+	
+	public Cell(int mass, ArmorStand armorStand, Slime slime) {
+		this.mass = mass;
+		
+		this.armorStand = armorStand;
+		this.slime = slime;
 	}
 	
 	public void recalculateSize() {
@@ -55,7 +63,7 @@ public abstract class Cell {
 	
 	public void move(double x, double y) {
 		Vector vector = new Vector(x, 0, y);
-		armorStand.setVelocity(vector);
+		addVelocity(vector);
 	}
 
 	public boolean isInvinsible() {
