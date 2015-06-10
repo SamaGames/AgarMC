@@ -65,7 +65,10 @@ public class CPlayer {
 	}
 
 	public void onDeath() {
+		player.sendMessage(ChatColor.RED + "Vous n'avez plus de cellules en vie, vous avez perdu !");
 		setPlaying(false);
+		for(PlayerCell cell : cells)
+			AgarMC.get().getGame().playerCellToStaticCell(cell);
 	}
 
 	public boolean isPlaying() {

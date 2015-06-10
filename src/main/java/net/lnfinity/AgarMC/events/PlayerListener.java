@@ -3,6 +3,7 @@ package net.lnfinity.AgarMC.events;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.game.CPlayer;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,8 +24,11 @@ public class PlayerListener implements Listener {
 		
 		CPlayer cplayer = AgarMC.get().getGame().getCPlayer(player);
 		
+		if(cplayer == null) return;
+		
 		if(!cplayer.isPlaying()) {
 			if(item.getType() == Material.NETHER_STAR) {
+				player.sendMessage(ChatColor.DARK_GREEN + "Vous entrez dans le jeu, bonne chance !");
 				cplayer.play();
 			}
 		} else {
@@ -32,6 +36,8 @@ public class PlayerListener implements Listener {
 				cplayer.split();
 			} else if(item.getType() == Material.SLIME_BALL) {
 				cplayer.ejectMass();
+			} else if(item.getType() == Material.SNOW_BALL) {
+				cplayer.onDeath();
 			}
 		}
 		

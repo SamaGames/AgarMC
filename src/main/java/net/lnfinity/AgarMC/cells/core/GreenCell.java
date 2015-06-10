@@ -18,6 +18,8 @@ public abstract class GreenCell extends Cell {
 		slime.setRemoveWhenFarAway(false);
 		armorStand.setPassenger(slime);
 		
+		freezeEntity(slime);
+		
 		recalculateSize();
 	}
 

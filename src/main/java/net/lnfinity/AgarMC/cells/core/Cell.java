@@ -1,9 +1,12 @@
 package net.lnfinity.AgarMC.cells.core;
 
 import net.lnfinity.AgarMC.AgarMC;
+import net.minecraft.server.v1_8_R2.NBTTagCompound;
 
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 
 public abstract class Cell {
@@ -83,4 +86,12 @@ public abstract class Cell {
 	public double getY() {
 		return armorStand.getLocation().getZ();
 	}
+	
+	protected void freezeEntity(Entity en){
+	      net.minecraft.server.v1_8_R2.Entity nmsEn = ((CraftEntity) en).getHandle();
+	      NBTTagCompound compound = new NBTTagCompound();
+	      nmsEn.c(compound);
+	      compound.setByte("NoAI", (byte) 1);
+	      nmsEn.f(compound);
+	  }
 }

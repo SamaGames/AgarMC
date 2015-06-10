@@ -9,6 +9,7 @@ import net.lnfinity.AgarMC.game.Game;
 import net.lnfinity.AgarMC.game.GameLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -20,6 +21,9 @@ public class AgarMC extends JavaPlugin {
 	private static AgarMC instance;
 	private Game game;
 	private ScoreManager scoreManager;
+	
+	public final static String NAME = "CubeWars";
+	public final static String NAME_BICOLOR = ChatColor.GREEN + "" + ChatColor.BOLD + "Cube" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Wars";
 
 	@Override
 	public void onEnable() {

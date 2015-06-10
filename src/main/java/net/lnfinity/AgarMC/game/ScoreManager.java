@@ -19,7 +19,7 @@ public class ScoreManager {
 		
 		objective = board.registerNewObjective("mass", "dummy");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-		objective.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "Agar" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MC");
+		objective.setDisplayName(AgarMC.NAME_BICOLOR);
 		
 		for(CPlayer player : AgarMC.get().getGame().getPlayers()) {
 			if(!player.isPlaying()) continue;
