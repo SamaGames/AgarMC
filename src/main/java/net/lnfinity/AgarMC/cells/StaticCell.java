@@ -1,11 +1,11 @@
 package net.lnfinity.AgarMC.cells;
 
+import net.lnfinity.AgarMC.cells.core.GreenCell;
+
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Slime;
 
-import net.lnfinity.AgarMC.cells.core.Cell;
-
-public class StaticCell extends Cell {
+public class StaticCell extends GreenCell {
 
 	public StaticCell(int mass, double x, double y) {
 		super(mass, x, y);

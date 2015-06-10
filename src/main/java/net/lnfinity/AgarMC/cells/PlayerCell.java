@@ -1,14 +1,14 @@
 package net.lnfinity.AgarMC.cells;
 
 import net.lnfinity.AgarMC.AgarMC;
-import net.lnfinity.AgarMC.cells.core.Cell;
+import net.lnfinity.AgarMC.cells.core.GreenCell;
 import net.lnfinity.AgarMC.game.CPlayer;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.util.Vector;
 
-public class PlayerCell extends Cell {
+public class PlayerCell extends GreenCell {
 
 	private final ArmorStand saddle;
 	private final CPlayer player;

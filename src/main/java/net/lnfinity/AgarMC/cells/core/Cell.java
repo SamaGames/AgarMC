@@ -4,14 +4,11 @@ import net.lnfinity.AgarMC.AgarMC;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
 import org.bukkit.util.Vector;
 
 public abstract class Cell {
 
 	protected int mass;
-	protected final Slime slime;
 	protected final ArmorStand armorStand;
 	protected boolean invinsible = false;
 	
@@ -22,32 +19,21 @@ public abstract class Cell {
 		armorStand = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), ArmorStand.class);
 		armorStand.setVisible(false);
 		armorStand.setSmall(true);
-		
-		/** Slime **/
-		slime = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), Slime.class);
-		slime.setRemoveWhenFarAway(false);
-		armorStand.setPassenger(slime);
-		
-		recalculateSize();
 	}
 	
-	public Cell(int mass, ArmorStand armorStand, Slime slime) {
+	public Cell(int mass, ArmorStand armorStand) {
 		this.mass = mass;
 		
 		this.armorStand = armorStand;
-		this.slime = slime;
 	}
 	
-	public void recalculateSize() {
-		slime.setSize((int) (Math.floor(Math.cbrt(this.mass))));
-	}
+	public abstract void recalculateSize();
 	
 	public double getRadius() {
 		return Math.cbrt(mass * 0.125);
 	}
 	
 	public void remove() {
-		slime.remove();
 		armorStand.remove();
 	}
 	
