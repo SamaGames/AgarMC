@@ -102,7 +102,7 @@ public class PlayerCell extends Cell {
 			mass -= 10;
 			final StaticCell cell = new StaticCell(8, getX(), getY());
 			cell.setInvinsible(true);
-			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(2);
+			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(3);
 			cell.setVelocity(vector);
 			AgarMC.get().getGame().addStaticCell(cell);
 			
@@ -125,14 +125,16 @@ public class PlayerCell extends Cell {
 			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(5);
 			cell.setVelocity(vector);
 			cell.setCanMerge(false);
+			this.setCanMerge(false);
 			player.addCell(cell);
 			
 			AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
 				@Override
 				public void run() {
-					cell.setInvinsible(false);
+					cell.setCanMerge(true);
+					setCanMerge(true);
 				}
-			}, 10 * 20L);
+			}, (long) (mass * 0.2) + 20 * 20L);
 			
 			recalculateSize();
 		}

@@ -33,7 +33,7 @@ public class GameLoop implements Runnable {
 				
 				//** Static Cells **//
 				for(StaticCell staticCell : AgarMC.get().getGame().getStaticCells()) {
-					if(playerCell.getMass() > staticCell.getMass() && Math.sqrt(Math.pow(playerCell.getX() - staticCell.getX(), 2) + Math.pow(playerCell.getY() - staticCell.getY(), 2)) < playerCell.getRadius() - staticCell.getRadius()) {
+					if(playerCell.getMass() > staticCell.getMass() && Math.sqrt(Math.pow(playerCell.getX() - staticCell.getX(), 2) + Math.pow(playerCell.getY() - staticCell.getY(), 2)) < playerCell.getRadius() - staticCell.getRadius() && !staticCell.isInvinsible()) {
 						playerCell.increaseMass(staticCell.getMass());
 						AgarMC.get().getGame().removeStaticCell(staticCell);
 					}
@@ -52,10 +52,11 @@ public class GameLoop implements Runnable {
 				
 				//** Owner Cells (merge) **//
 				for(PlayerCell other : player.getCells()) {
-					if(other.equals(playerCell) || playerCell.getMass() < other.getMass() || !other.canMerge()) continue;
-					if(playerCell.getMass() > other.getMass() && Math.sqrt(Math.pow(playerCell.getX() - other.getX(), 2) + Math.pow(playerCell.getY() - other.getY(), 2)) < playerCell.getRadius() - other.getRadius()) {
+					if(other.equals(playerCell) || !playerCell.canMerge() || !other.canMerge()) continue;
+					if(Math.sqrt(Math.pow(playerCell.getX() - other.getX(), 2) + Math.pow(playerCell.getY() - other.getY(), 2)) < playerCell.getRadius() + other.getRadius()) { // (interlocation)
 						playerCell.increaseMass(other.getMass());
 						player.removeCell(other);
+						playerCell.setCanMerge(false);
 					}
 				}
 			}
