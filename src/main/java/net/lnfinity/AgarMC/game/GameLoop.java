@@ -58,7 +58,6 @@ public class GameLoop implements Runnable {
 						player.removeCell(other);
 					}
 				}
-				
 			}
 		}
 	}

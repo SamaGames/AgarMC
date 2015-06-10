@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
+import net.lnfinity.AgarMC.util.Utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -19,7 +20,7 @@ public class CPlayer {
 	public CPlayer(Player player) {
 		this.player = player;
 		
-		color = ChatColor.values()[(int) Math.random() * ChatColor.values().length];
+		color = Utils.getRandomColor();
 		
 		AgarMC.get().getGame().equipSpectatingPlayer(player);
 	}
@@ -37,7 +38,7 @@ public class CPlayer {
 
 	public void removeCell(PlayerCell cell) {
 		cells.remove(cell);
-		if (cells.size() > 1) {
+		if (cells.size() >= 1) {
 			PlayerCell max = null;
 			for (PlayerCell c : getCells()) {
 				if((max == null || c.getMass() > max.getMass()) && !c.equals(cell)) {
@@ -64,7 +65,7 @@ public class CPlayer {
 	}
 
 	public void onDeath() {
-
+		setPlaying(false);
 	}
 
 	public boolean isPlaying() {
@@ -83,7 +84,7 @@ public class CPlayer {
 	public void remove() {
 		// Add static cells
 		
-		isPlaying = false;
+		setPlaying(false);
 	}
 	
 	public PlayerCell getDriver() {

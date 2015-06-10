@@ -29,6 +29,10 @@ public class PlayerCell extends Cell {
 		saddle = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), ArmorStand.class);
 		saddle.setVisible(false);
 		saddle.setSmall(true);
+		
+		saddle.setCustomName(player.getNick());
+		saddle.setCustomNameVisible(true);
+		
 		slime.setPassenger(saddle);
 		
 		this.player = player;
@@ -47,6 +51,10 @@ public class PlayerCell extends Cell {
 	public void remove() {
 		super.remove();
 		
+		if(saddle.getPassenger() != null) {
+			saddle.setPassenger(null);
+		}
+			
 		saddle.remove();
 	}
 	

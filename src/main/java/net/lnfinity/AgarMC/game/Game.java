@@ -21,6 +21,10 @@ public class Game {
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
 	private final List<CPlayer> players = Collections.synchronizedList(new ArrayList<CPlayer>());
 	
+	public final static int DIMENSIONS = 100; // Side of the arena
+	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 4; // 1 cell per 4 blocks
+	public final static int MAX_MASS = MAX_STATIC * 8;
+	
 	public Game() {
 		//initialize();
 	}
@@ -93,7 +97,7 @@ public class Game {
 	}
 	
 	public void initialize() {
-		for(int i = 0; i < 1000; i++) {
+		for(int i = 0; i < MAX_STATIC; i++) {
 			StaticCell cell = new StaticCell(Math.random() * 100, Math.random() * 100);
 			staticCells.add(cell);
 		}
@@ -121,5 +125,25 @@ public class Game {
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		return item;
+	}
+	
+	public int getStaticMass() {
+		int mass = 0;
+		for(StaticCell cell : getStaticCells()) {
+			mass += cell.getMass();
+		}
+		return mass;
+	}
+	
+	public int getPlayersMass() {
+		int mass = 0;
+		for(CPlayer player : getPlayers()) {
+			mass += player.getTotalMass();
+		}
+		return mass;
+	}
+	
+	public int getTotalMass() {
+		return getStaticMass() + getPlayersMass();
 	}
 }
