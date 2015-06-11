@@ -17,6 +17,8 @@ public class RedCell extends Cell {
 		magma.setRemoveWhenFarAway(false);
 		armorStand.setPassenger(magma);
 		
+		freezeEntity(magma);
+		
 		recalculateSize();
 	}
 

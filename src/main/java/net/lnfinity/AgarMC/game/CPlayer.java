@@ -39,13 +39,15 @@ public class CPlayer {
 	public void removeCell(PlayerCell cell) {
 		cells.remove(cell);
 		if (cells.size() >= 1) {
-			PlayerCell max = null;
-			for (PlayerCell c : getCells()) {
-				if((max == null || c.getMass() > max.getMass()) && !c.equals(cell)) {
-					max = c;
+			if(cell.isDriving()) {
+				PlayerCell max = null;
+				for (PlayerCell c : getCells()) {
+					if((max == null || c.getMass() > max.getMass()) && !c.equals(cell)) {
+						max = c;
+					}
 				}
+				max.setDriving(true);
 			}
-			max.setDriving(true);
 		} else {
 			onDeath();
 		}

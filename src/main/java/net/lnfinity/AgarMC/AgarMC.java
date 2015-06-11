@@ -8,6 +8,7 @@ import net.lnfinity.AgarMC.game.DecayLoop;
 import net.lnfinity.AgarMC.game.Game;
 import net.lnfinity.AgarMC.game.GameLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
+import net.lnfinity.AgarMC.game.VirusLoop;
 
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -34,6 +35,7 @@ public class AgarMC extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new WorldListener(), this);
 		
 		this.getServer().getScheduler().runTaskTimer(this, new GameLoop(), 5L, 3L);
+		this.getServer().getScheduler().runTaskTimer(this, new VirusLoop(), 1L, 1L);
 		this.getServer().getScheduler().runTaskTimer(this, new DecayLoop(), 3 * 20L, 3 * 20L);
 		this.getServer().getScheduler().runTaskTimer(this, new CellSpawner(), 20L, 20L);
 		

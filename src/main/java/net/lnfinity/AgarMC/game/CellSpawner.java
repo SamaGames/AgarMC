@@ -2,6 +2,7 @@ package net.lnfinity.AgarMC.game;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.StaticCell;
+import net.lnfinity.AgarMC.cells.VirusCell;
 
 public class CellSpawner implements Runnable {
 
@@ -19,8 +20,13 @@ public class CellSpawner implements Runnable {
 			}
 		}
 		
-		if(iterations >= 30) {
-			System.out.println("{\"players\":\"" + AgarMC.get().getGame().getPlayers().size() + "\",\"staticCells\":\"" + AgarMC.get().getGame().getStaticMass() + "\",\"playersCells\":\"" + AgarMC.get().getGame().getPlayersMass() + "\",\"total\":\"" + AgarMC.get().getGame().getTotalMass() + "\"}");
+		if(AgarMC.get().getGame().getVirus().size() < Game.MAX_VIRUS) {
+			VirusCell virus = new VirusCell(Math.random() * 100, Math.random() * 100);
+			AgarMC.get().getGame().addVirus(virus);
+		}
+		
+		if(iterations > 30) {
+			System.out.println("{\"players\":\"" + AgarMC.get().getGame().getPlayers().size() + "\",\"staticCells\":\"" + AgarMC.get().getGame().getStaticMass() + "\",\"playersCells\":\"" + AgarMC.get().getGame().getPlayersMass() + "\",\"total\":\"" + AgarMC.get().getGame().getTotalMass() + "\",\"virus\":\"" + AgarMC.get().getGame().getVirus().size() + "\"}");
 			iterations = 1;
 		}
 	}

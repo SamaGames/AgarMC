@@ -91,7 +91,7 @@ public class PlayerCell extends GreenCell {
 	public void move(double x, double y) {
 		super.move(x, y);
 		
-		if(isDriver && saddle.getPassenger() == null) {
+		if(isDriver && saddle.getPassenger() == null && player.getDriver().equals(this)) {
 			saddle.setPassenger(player.getPlayer());
 		}
 	}

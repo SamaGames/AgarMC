@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.cells.StaticCell;
+import net.lnfinity.AgarMC.cells.VirusCell;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -19,11 +20,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Game {
 
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
+	private final List<VirusCell> virus = Collections.synchronizedList(new ArrayList<VirusCell>());
 	private final List<CPlayer> players = Collections.synchronizedList(new ArrayList<CPlayer>());
 	
 	public final static int DIMENSIONS = 100; // Side of the arena
 	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 4; // 1 cell per 4 blocks
 	public final static int MAX_MASS = MAX_STATIC * 8;
+	public final static int MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000; // 1 virus per 1000 blocks
 	
 	public Game() {
 		//initialize();
@@ -50,12 +53,24 @@ public class Game {
 		return statics;
 	}
 	
+	public List<VirusCell> getVirus() {
+		List<VirusCell> virus = new ArrayList<VirusCell>();
+		for (VirusCell v : this.virus) {
+			virus.add(v);
+		}
+		return virus;
+	}
+	
 	public void addPlayer(CPlayer player) {
 		players.add(player);
 	}
 	
 	public void addStaticCell(StaticCell cell) {
 		staticCells.add(cell);
+	}
+	
+	public void addVirus(VirusCell virus) {
+		this.virus.add(virus);
 	}
 	
 	public void removeStaticCell(StaticCell cell) {
@@ -66,6 +81,11 @@ public class Game {
 	public void removePlayer(CPlayer player) {
 		player.remove();
 		players.add(player);
+	}
+	
+	public void removeVirus(VirusCell virus) {
+		virus.remove();
+		this.virus.remove(virus);
 	}
 	
 	public void removePlayer(Player player) {
@@ -100,6 +120,11 @@ public class Game {
 		for(int i = 0; i < MAX_STATIC; i++) {
 			StaticCell cell = new StaticCell(Math.random() * 100, Math.random() * 100);
 			staticCells.add(cell);
+		}
+		
+		for(int i = 0; i < MAX_VIRUS; i++) {
+			VirusCell cell = new VirusCell(Math.random() * 100, Math.random() * 100);
+			virus.add(cell);
 		}
 	}
 	
@@ -143,8 +168,17 @@ public class Game {
 		return mass;
 	}
 	
+	
 	public int getTotalMass() {
 		return getStaticMass() + getPlayersMass();
+	}
+	
+	public int getVirusMass() {
+		int mass = 0;
+		for(VirusCell cell : getVirus()) {
+			mass += cell.getMass();
+		}
+		return mass;
 	}
 	
 	public void playerCellToStaticCell(PlayerCell playerCell) {

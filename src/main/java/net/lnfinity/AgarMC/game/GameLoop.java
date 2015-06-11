@@ -3,6 +3,7 @@ package net.lnfinity.AgarMC.game;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.cells.StaticCell;
+import net.lnfinity.AgarMC.cells.VirusCell;
 import net.lnfinity.AgarMC.util.Utils;
 
 import org.bukkit.Location;
@@ -23,10 +24,6 @@ public class GameLoop implements Runnable {
 				//### Moving players ###//
 				
 				Vector direction = Utils.getDirection(playerCell.getX(), playerCell.getY(), to.getX(), to.getZ()).multiply(1 / Math.log(playerCell.getMass()));
-				/*Vector dir = new Vector();
-				if(!player.getDriver().equals(playerCell))
-					dir = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(1 / Math.log(playerCell.getMass())).multiply(0.8);
-				direction.add(dir);*/
 				playerCell.move(direction.getX(), direction.getZ());
 				
 				//### Eating tests ###//
@@ -63,6 +60,24 @@ public class GameLoop implements Runnable {
 								playerCell.setCanMerge(true);
 							}
 						}, (long) (playerCell.getMass() * 0.2) + 20 * 20L);
+					}
+				}
+				
+				//** Virus Cells **//
+				for(VirusCell virus : AgarMC.get().getGame().getVirus()) {
+					if(playerCell.getMass() < virus.getMass()) continue;
+					if(playerCell.getMass() > virus.getMass() && Math.sqrt(Math.pow(playerCell.getX() - virus.getX(), 2) + Math.pow(playerCell.getY() - virus.getY(), 2)) < playerCell.getRadius() - virus.getRadius()) {
+						AgarMC.get().getGame().removeVirus(virus);
+						Location loc = new Location(AgarMC.get().getWorld(), virus.getX(), 128, virus.getY()); // Using bukkit's location class
+						for(int i = 0; i < Math.floor(playerCell.getMass() / 15); i++) {
+							loc.setYaw((float) (Math.random() * 360));
+							loc.setPitch(0);
+							PlayerCell cell = new PlayerCell(player, 15, loc.getX(), loc.getZ());
+							cell.setVelocity(loc.getDirection().normalize().multiply(2));
+							player.addCell(cell);
+						}
+						
+						player.removeCell(playerCell);
 					}
 				}
 				
