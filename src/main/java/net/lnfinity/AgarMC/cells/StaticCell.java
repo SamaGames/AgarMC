@@ -3,6 +3,7 @@ package net.lnfinity.AgarMC.cells;
 import net.lnfinity.AgarMC.cells.core.GreenCell;
 
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Slime;
 
 public class StaticCell extends GreenCell {
 
@@ -11,11 +12,11 @@ public class StaticCell extends GreenCell {
 	}
 	
 	public StaticCell(double x, double y) {
-		super(Math.random() * 50 < 1 ? 2 : 1, x, y);
+		super(1, x, y);
 	}
 	
-	public StaticCell(int mass, ArmorStand armorStand) {
-		super(mass, armorStand);
+	public StaticCell(int mass, ArmorStand armorStand, Slime slime) {
+		super(mass, armorStand, slime);
 		
 		recalculateSize();
 	}

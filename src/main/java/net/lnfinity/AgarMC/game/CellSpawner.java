@@ -21,14 +21,12 @@ public class CellSpawner implements Runnable {
 		}
 		
 		if(AgarMC.get().getGame().getVirus().size() < Game.MAX_VIRUS) {
-			VirusCell virus = new VirusCell(Math.random() * Game.DIMENSIONS, Math.random() * Game.DIMENSIONS);
+			VirusCell virus = new VirusCell(Math.random() * 100, Math.random() * 100);
 			AgarMC.get().getGame().addVirus(virus);
 		}
 		
 		if(iterations > 30) {
-			int sm = AgarMC.get().getGame().getStaticMass();
-			int pm = AgarMC.get().getGame().getPlayersMass();
-			System.out.println("{\"players\":\"" + AgarMC.get().getGame().getPlayers().size() + "\",\"staticCells\":\"" + sm + "\",\"playersCells\":\"" + pm + "\",\"total\":\"" + (sm + pm) + "\",\"virus\":\"" + AgarMC.get().getGame().getVirus().size() + "\"}");
+			System.out.println("{\"players\":\"" + AgarMC.get().getGame().getPlayers().size() + "\",\"staticCells\":\"" + AgarMC.get().getGame().getStaticMass() + "\",\"playersCells\":\"" + AgarMC.get().getGame().getPlayersMass() + "\",\"total\":\"" + AgarMC.get().getGame().getTotalMass() + "\",\"virus\":\"" + AgarMC.get().getGame().getVirus().size() + "\"}");
 			iterations = 1;
 		}
 	}

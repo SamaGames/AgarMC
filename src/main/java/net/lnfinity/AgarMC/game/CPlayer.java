@@ -6,12 +6,11 @@ import java.util.List;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.util.Utils;
-import net.samagames.api.games.GamePlayer;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class CPlayer extends GamePlayer {
+public class CPlayer {
 
 	private final Player player;
 	private final List<PlayerCell> cells = new ArrayList<PlayerCell>();
@@ -19,7 +18,6 @@ public class CPlayer extends GamePlayer {
 	private final ChatColor color;
 
 	public CPlayer(Player player) {
-		super(player);
 		this.player = player;
 		
 		color = Utils.getRandomColor();
