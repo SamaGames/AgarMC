@@ -1,43 +1,56 @@
 package net.lnfinity.AgarMC.cells.core;
 
-import net.lnfinity.AgarMC.AgarMC;
-
-import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Slime;
+import org.bukkit.inventory.ItemStack;
 
 public abstract class GreenCell extends Cell {
 	
-	protected final Slime slime;
+	protected final ItemStack block;
+	private Material[] sizes = new Material[]{
+			Material.SLIME_BLOCK,
+			Material.SLIME_BLOCK,
+			Material.EMERALD_BLOCK,
+			Material.EMERALD_ORE,
+			Material.GRASS,
+			Material.CACTUS,
+			Material.MELON_BLOCK
+	};
 	
 	public GreenCell(int mass, double x, double y) {
 		super(mass, x, y);
 		
-		/** Slime **/
-		slime = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), Slime.class);
-		slime.setRemoveWhenFarAway(false);
-		armorStand.setPassenger(slime);
-		
-		freezeEntity(slime);
-		
-		recalculateSize();
+		/** Green Cube **/
+		int size = (int) (Math.floor(Math.cbrt(this.mass)));
+		if (size >= sizes.length)
+			size = sizes.length - 1;
+		block = new ItemStack(sizes[size]);
+		armorStand.setHelmet(block);
 	}
 
-	public GreenCell(int mass, ArmorStand armorStand, Slime slime) {
+	public GreenCell(int mass, ArmorStand armorStand) {
 		super(mass, armorStand);
 		
-		this.slime = slime;
+		block = new ItemStack(getMaterial());
+		armorStand.setHelmet(block);
 	}
 	
 	@Override
 	public void recalculateSize() {
-		slime.setSize((int) (Math.floor(Math.cbrt(this.mass))));
+		block.setType(getMaterial());
+		armorStand.setHelmet(block);
 	}
 	
 	@Override
 	public void remove() {
-		slime.remove();
-		
 		super.remove();
+	}
+	
+	@Override
+	public Material getMaterial(){
+		int size = (int) (Math.floor(Math.cbrt(this.mass)));
+		if (size >= sizes.length)
+			size = sizes.length - 1;
+		return sizes[size];
 	}
 }

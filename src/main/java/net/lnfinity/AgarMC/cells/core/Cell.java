@@ -1,10 +1,11 @@
 package net.lnfinity.AgarMC.cells.core;
 
 import net.lnfinity.AgarMC.AgarMC;
-import net.minecraft.server.v1_8_R2.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftEntity;
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
@@ -31,6 +32,8 @@ public abstract class Cell {
 	}
 	
 	public abstract void recalculateSize();
+	
+	public abstract Material getMaterial();
 	
 	public double getRadius() {
 		return Math.cbrt(mass * 0.125);
@@ -88,7 +91,7 @@ public abstract class Cell {
 	}
 	
 	protected void freezeEntity(Entity en){
-	      net.minecraft.server.v1_8_R2.Entity nmsEn = ((CraftEntity) en).getHandle();
+	      net.minecraft.server.v1_8_R3.Entity nmsEn = ((CraftEntity) en).getHandle();
 	      NBTTagCompound compound = new NBTTagCompound();
 	      nmsEn.c(compound);
 	      compound.setByte("NoAI", (byte) 1);

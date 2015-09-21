@@ -1,36 +1,47 @@
 package net.lnfinity.AgarMC.cells.core;
 
-import net.lnfinity.AgarMC.AgarMC;
-
-import org.bukkit.Location;
-import org.bukkit.entity.MagmaCube;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public class RedCell extends Cell {
 
-	protected final MagmaCube magma;
+	protected final ItemStack block;
+	private Material[] sizes = new Material[]{
+			Material.REDSTONE_BLOCK,
+			Material.REDSTONE_BLOCK,
+			Material.RED_SANDSTONE,
+			Material.NETHERRACK,
+			Material.NETHER_BRICK,
+			Material.BRICK,
+			Material.HARD_CLAY
+	};
 	
 	public RedCell(int mass, double x, double y) {
 		super(mass, x, y);
 		
-		/** Magma Cube **/
-		magma = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), MagmaCube.class);
-		magma.setRemoveWhenFarAway(false);
-		armorStand.setPassenger(magma);
-		
-		freezeEntity(magma);
+		/** Red Cube **/
+		block = new ItemStack(getMaterial());
+		armorStand.setHelmet(block);
 		
 		recalculateSize();
 	}
 
 	@Override
 	public void recalculateSize() {
-		magma.setSize((int) (Math.floor(Math.cbrt(this.mass))));
+		block.setType(getMaterial());
+		armorStand.setHelmet(block);
 	}
 	
 	@Override
 	public void remove() {
-		magma.remove();
-		
 		super.remove();
+	}
+	
+	@Override
+	public Material getMaterial(){
+		int size = (int) (Math.floor(Math.cbrt(this.mass)));
+		if (size >= sizes.length)
+			size = sizes.length - 1;
+		return sizes[size];
 	}
 }

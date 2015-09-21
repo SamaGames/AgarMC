@@ -16,8 +16,8 @@ public class VirusLoop implements Runnable {
 
 		// ** Virus Cells **//
 		for (VirusCell virus : AgarMC.get().getGame().getVirus()) {
+			if (virus.isInvinsible()) continue;
 			for (StaticCell cell : AgarMC.get().getGame().getStaticCells()) {
-				if (virus.isInvinsible()) continue;
 				if (cell.getMass() > 1 && virus.getMass() > cell.getMass() && Math.sqrt(Math.pow(virus.getX() - cell.getX(), 2) + Math.pow(virus.getY() - cell.getY(), 2)) < virus.getRadius() - cell.getRadius()) {
 					virus.increaseMass(cell.getMass());
 					AgarMC.get().getGame().removeStaticCell(cell);

@@ -33,7 +33,7 @@ public class PlayerCell extends GreenCell {
 		saddle.setCustomName(player.getNick());
 		saddle.setCustomNameVisible(true);
 		
-		slime.setPassenger(saddle);
+		armorStand.setPassenger(saddle);
 		
 		this.player = player;
 		
@@ -143,6 +143,6 @@ public class PlayerCell extends GreenCell {
 	public StaticCell toStaticCell() {
 		saddle.setPassenger(null);
 		saddle.remove();
-		return new StaticCell(mass, armorStand, slime);
+		return new StaticCell(mass, armorStand);
 	}
 }
