@@ -106,6 +106,8 @@ public class CPlayer extends GamePlayer {
 		PlayerCell base = AgarMC.get().getGame().safeSpawn(this);
 		base.setDriving(true);
 		setPlaying(true);
+		massChanged();
+		AgarMC.get().getScoreManager().update();
 	}
 	
 	public void split() {

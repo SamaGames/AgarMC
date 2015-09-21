@@ -103,4 +103,9 @@ public class AgarMC extends JavaPlugin {
 	public Game getGame() {
 		return game;
 	}
+	
+	public ScoreManager getScoreManager()
+	{
+		return scoreManager;
+	}
 }
