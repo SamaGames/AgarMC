@@ -63,7 +63,7 @@ public class AgarMC extends JavaPlugin {
 				this.getWorld().loadChunk(i, j);
 		game.initialize();
 		getWorld().getWorldBorder().setCenter(new Location(getWorld(), Game.DIMENSIONS / 2, 128, Game.DIMENSIONS / 2));
-		getWorld().getWorldBorder().setSize(Game.DIMENSIONS + 9D);
+		getWorld().getWorldBorder().setSize(Game.DIMENSIONS + 8D);
 		getWorld().getWorldBorder().setWarningDistance(0);
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
