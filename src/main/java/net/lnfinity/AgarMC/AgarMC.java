@@ -47,8 +47,8 @@ public class AgarMC extends JavaPlugin {
 		GameType type;
 		try {
 			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("gameType", null).getAsString());
-			Validate.notNull(type);	
-		} catch (NullPointerException e) {
+			Validate.notNull(type);
+		} catch (IllegalArgumentException | NullPointerException e) {
 			Bukkit.getLogger().severe("No GameType provided or invalid one ! /-- STOPPING SERVER --\\");
 			Bukkit.shutdown();
 			return ;
