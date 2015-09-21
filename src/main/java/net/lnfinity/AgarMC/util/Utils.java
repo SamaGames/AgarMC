@@ -29,13 +29,8 @@ public final class Utils {
 		GameType type = AgarMC.get().getGame().getGameType();
 		if (type == GameType.TEAMS)
 		{
-			int color = random.nextInt(3);
-			switch(color) {
-			case 0: return ChatColor.RED;
-			case 1: return ChatColor.AQUA;
-			case 2: return ChatColor.GREEN;
-			}
-			return ChatColor.WHITE;
+			int color = random.nextInt(AgarTeams.values().length);
+			return AgarTeams.values()[color].getColor();
 		}
 		int color = random.nextInt(16);
 		switch(color) {

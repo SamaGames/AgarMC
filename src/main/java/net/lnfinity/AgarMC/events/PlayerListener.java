@@ -2,8 +2,11 @@ package net.lnfinity.AgarMC.events;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.game.CPlayer;
+import net.lnfinity.AgarMC.util.AgarTeams;
+import net.lnfinity.AgarMC.util.GameType;
 import net.samagames.api.SamaGamesAPI;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -72,5 +76,28 @@ public class PlayerListener implements Listener {
 	public void onInventoryClick(InventoryClickEvent ev)
 	{
 		ev.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void onPlayerChat(AsyncPlayerChatEvent ev)
+	{
+		if (ev.isCancelled())
+			return ;
+		ev.setCancelled(true);
+		CPlayer cplayer = AgarMC.get().getGame().getCPlayer(ev.getPlayer());
+		if (cplayer == null)
+			return ;
+		String msg = "";
+		if (AgarMC.get().getGame().getGameType() == GameType.TEAMS)
+		{
+			AgarTeams team = AgarTeams.getTeam(cplayer.getColor());
+			msg += ChatColor.GRAY + "[" + (team == null ? ChatColor.DARK_RED + "ERROR" : team.getDisplayName()) + ChatColor.GRAY + "]";
+		}
+		if (cplayer.isPlaying())
+			msg += ChatColor.GRAY + "[" + ChatColor.GREEN + cplayer.getTotalMass() + ChatColor.GRAY + "]";
+		msg += ChatColor.GRAY + " " + ev.getPlayer().getDisplayName() + ": " + ev.getMessage();
+		for (Player p : Bukkit.getOnlinePlayers())
+			p.sendMessage(msg);
+		Bukkit.getConsoleSender().sendMessage(msg);
 	}
 }

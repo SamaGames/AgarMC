@@ -136,4 +136,9 @@ public class CPlayer extends GamePlayer {
 	public void massChanged() {
 		player.getPlayer().setLevel(getTotalMass());
 	}
+	
+	public ChatColor getColor()
+	{
+		return color;
+	}
 }
