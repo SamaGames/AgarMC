@@ -78,7 +78,7 @@ public class AgarMC extends JavaPlugin {
 			joinManager.registerHandler(new AgarJoinHandler(SamaGamesAPI.get().getGameManager()), 100);
 			game.getBeginTimer().cancel();
 			game.setStatus(Status.IN_GAME);
-		} catch(Exception e) {
+		} catch(ClassCastException | NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 			Bukkit.shutdown();
 		}
