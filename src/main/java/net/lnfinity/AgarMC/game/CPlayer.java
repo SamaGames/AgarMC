@@ -73,6 +73,7 @@ public class CPlayer extends GamePlayer {
 		setPlaying(false);
 		for(PlayerCell cell : cells)
 			AgarMC.get().getGame().playerCellToStaticCell(cell);
+		cells.clear();
 	}
 
 	public boolean isPlaying() {
