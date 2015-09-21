@@ -36,7 +36,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 4; // 1 cell per 4 blocks
 	public final static int MAX_MASS = MAX_STATIC * 8;
 	public final static int MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000; // 1 virus per 1000 blocks
-	public GameType gameType;
+	private GameType gameType;
 	
 	public Game(GameType type) {
 		super("agarmc", "AgarMC", "Cube cube cuuuuuuuuuuuuube", CPlayer.class);
@@ -136,7 +136,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		player.getInventory().setItem(1, constructItem(Material.SLIME_BALL, 1, (byte) 0, ChatColor.GREEN + "" + ChatColor.BOLD + "Ejecter de la Matière", Arrays.asList(ChatColor.GRAY + "Ejecte une cellule inerte dans votre direction")));
 		player.getInventory().setItem(4, Utils.constructBook(constructItem(Material.WRITTEN_BOOK, 1, (byte) 0, ChatColor.LIGHT_PURPLE + "Règles", Arrays.asList(ChatColor.GRAY + "Visualiser les règles du jeu")), ChatColor.LIGHT_PURPLE + "Règles", "Infinity & Rigner", Utils.getRulesBookText()));
 		player.getInventory().setItem(7, constructItem(Material.SNOW_BALL, 1, (byte) 0, ChatColor.AQUA + "Mode spectateur", Arrays.asList(ChatColor.GRAY + "Vous permet de visualiser la partie en cours")));
-		player.getInventory().setItem(8, constructItem(Material.IRON_DOOR, 1, (byte) 0, ChatColor.RED + "Quitter", null));
+		player.getInventory().setItem(8, SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem());
 	}
 
 	public void equipSpectatingPlayer(final Player player) {

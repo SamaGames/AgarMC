@@ -143,6 +143,7 @@ public class PlayerCell extends GreenCell {
 	public StaticCell toStaticCell() {
 		saddle.setPassenger(null);
 		saddle.remove();
+		armorStand.setPassenger(null);
 		return new StaticCell(mass, armorStand);
 	}
 }

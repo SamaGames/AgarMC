@@ -2,6 +2,8 @@ package net.lnfinity.AgarMC.util;
 
 import java.util.Random;
 
+import net.lnfinity.AgarMC.AgarMC;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
@@ -24,6 +26,17 @@ public final class Utils {
 	}
 	
 	public static ChatColor getRandomColor() {
+		GameType type = AgarMC.get().getGame().getGameType();
+		if (type == GameType.TEAMS)
+		{
+			int color = random.nextInt(3);
+			switch(color) {
+			case 0: return ChatColor.RED;
+			case 1: return ChatColor.AQUA;
+			case 2: return ChatColor.GREEN;
+			}
+			return ChatColor.WHITE;
+		}
 		int color = random.nextInt(16);
 		switch(color) {
 		case 0 : return ChatColor.AQUA;
@@ -66,7 +79,7 @@ public final class Utils {
 	{
 		String[] raw = new String[]{
 				"\n   ]--------------[" +
-				"\n          &6&lAgarMC&0" +
+				"\n         &6&lAgarMC&0" +
 				"\n     par SamaGames" +
 				"\n   ]--------------[" +
 				"\n" +
