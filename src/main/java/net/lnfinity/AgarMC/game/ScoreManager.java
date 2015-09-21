@@ -1,6 +1,8 @@
 package net.lnfinity.AgarMC.game;
 
 import net.lnfinity.AgarMC.AgarMC;
+import net.lnfinity.AgarMC.util.AgarTeams;
+import net.lnfinity.AgarMC.util.GameType;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -21,10 +23,15 @@ public class ScoreManager {
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		objective.setDisplayName(AgarMC.NAME_BICOLOR);
 		
-		for(CPlayer player : AgarMC.get().getGame().getPlayers()) {
-			if(!player.isPlaying()) continue;
-			objective.getScore(ChatColor.GOLD + player.getNick()).setScore(player.getTotalMass());
+		if (AgarMC.get().getGame().getGameType() == GameType.TEAMS){
+			for (AgarTeams team : AgarTeams.values())
+				objective.getScore(team.getDisplayName()).setScore(team.getTotalMass());
 		}
+		else
+			for(CPlayer player : AgarMC.get().getGame().getPlayers()) {
+				if(!player.isPlaying()) continue;
+				objective.getScore(ChatColor.GOLD + player.getNick()).setScore(player.getTotalMass());
+			}
 		
 		for(Player player : AgarMC.get().getServer().getOnlinePlayers()) {
 			player.setScoreboard(board);

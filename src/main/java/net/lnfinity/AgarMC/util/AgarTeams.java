@@ -1,5 +1,8 @@
 package net.lnfinity.AgarMC.util;
 
+import net.lnfinity.AgarMC.AgarMC;
+import net.lnfinity.AgarMC.game.CPlayer;
+
 import org.bukkit.ChatColor;
 
 public enum AgarTeams
@@ -38,5 +41,16 @@ public enum AgarTeams
 			if (tmp.getColor() == c)
 				return tmp;
 		return null;
+	}
+	
+	public int getTotalMass()
+	{
+		int total = 0;
+		for(CPlayer player : AgarMC.get().getGame().getPlayers()) {
+			if(!player.isPlaying()) continue;
+			if(player.getColor() != color) continue;
+			total += player.getTotalMass();
+		}
+		return total;
 	}
 }
