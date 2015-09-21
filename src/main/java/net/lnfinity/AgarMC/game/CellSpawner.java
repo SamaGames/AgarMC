@@ -3,6 +3,7 @@ package net.lnfinity.AgarMC.game;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.StaticCell;
 import net.lnfinity.AgarMC.cells.VirusCell;
+import net.lnfinity.AgarMC.util.Utils;
 
 public class CellSpawner implements Runnable {
 
@@ -16,12 +17,12 @@ public class CellSpawner implements Runnable {
 		int playersMass = AgarMC.get().getGame().getPlayersMass();
 		if(playersMass + staticMass < Game.MAX_MASS && staticMass < Game.MAX_STATIC) {
 			for(int i = 0; i < AgarMC.get().getGame().getPlayers().size() * 2 + 1; i++) {
-				AgarMC.get().getGame().addStaticCell(new StaticCell(Math.random() * Game.DIMENSIONS, Math.random() * Game.DIMENSIONS));
+				AgarMC.get().getGame().addStaticCell(new StaticCell(Utils.randomLocation(Game.DIMENSIONS), Utils.randomLocation(Game.DIMENSIONS)));
 			}
 		}
 		
 		if(AgarMC.get().getGame().getVirus().size() < Game.MAX_VIRUS) {
-			VirusCell virus = new VirusCell(Math.random() * Game.DIMENSIONS, Math.random() * Game.DIMENSIONS);
+			VirusCell virus = new VirusCell(Utils.randomLocation(Game.DIMENSIONS), Utils.randomLocation(Game.DIMENSIONS));
 			AgarMC.get().getGame().addVirus(virus);
 		}
 		

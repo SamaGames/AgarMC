@@ -2,6 +2,7 @@ package net.lnfinity.AgarMC.events;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.game.CPlayer;
+import net.samagames.api.SamaGamesAPI;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -30,9 +31,11 @@ public class PlayerListener implements Listener {
 		
 		if(cplayer == null) return;
 		
-		 if(item.getType() == Material.WRITTEN_BOOK) {
+		if(item.getType() == Material.WRITTEN_BOOK) {
 			e.setCancelled(false);
 			return ;
+		} else if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
+			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quitté la partie");
 		}
 		
 		if(!cplayer.isPlaying()) {

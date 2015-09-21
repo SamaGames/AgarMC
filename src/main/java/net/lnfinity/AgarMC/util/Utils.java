@@ -101,4 +101,9 @@ public final class Utils {
 		}
 		return s;
 	}
+	
+	public static double randomLocation(double dimensions)
+	{
+		return (0.3D + Math.random() * (dimensions - 0.6D));
+	}
 }

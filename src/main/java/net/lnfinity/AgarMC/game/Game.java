@@ -118,12 +118,12 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 			if (!(e instanceof Player))
 				e.remove();
 		for(int i = 0; i < MAX_STATIC / 8; i++) {
-			StaticCell cell = new StaticCell(Math.random() * DIMENSIONS, Math.random() * DIMENSIONS);
+			StaticCell cell = new StaticCell(Utils.randomLocation(DIMENSIONS), Utils.randomLocation(DIMENSIONS));
 			staticCells.add(cell);
 		}
 		
 		for(int i = 0; i < MAX_VIRUS / 8; i++) {
-			VirusCell cell = new VirusCell(Math.random() * DIMENSIONS, Math.random() * DIMENSIONS);
+			VirusCell cell = new VirusCell(Utils.randomLocation(DIMENSIONS), Utils.randomLocation(DIMENSIONS));
 			virus.add(cell);
 		}
 	}
@@ -219,9 +219,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		CPlayer player = getCPlayer(p);
 		if (player == null)
 			return ;
-		for(PlayerCell cell : player.getCells()) {
-			playerCellToStaticCell(cell);
-		}
+		player.onDeath();
 		if (this.gamePlayers.containsKey(p.getUniqueId()))
 			this.gamePlayers.remove(p.getUniqueId());
 	}
