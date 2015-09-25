@@ -11,6 +11,8 @@ public class CellSpawner implements Runnable {
 	
 	@Override
 	public void run() {
+		if (AgarMC.get().getGame().getPlayers().size() == 0)
+			return ;
 		iterations++;
 		
 		int staticMass = AgarMC.get().getGame().getStaticMass();
