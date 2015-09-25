@@ -14,6 +14,7 @@ import net.lnfinity.AgarMC.cells.VirusCell;
 import net.lnfinity.AgarMC.util.GameType;
 import net.lnfinity.AgarMC.util.Utils;
 import net.samagames.api.SamaGamesAPI;
+import net.samagames.api.games.Status;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -25,6 +26,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Game extends net.samagames.api.games.Game<CPlayer> {
 
@@ -33,7 +36,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	//private final List<CPlayer> players = Collections.synchronizedList(new ArrayList<CPlayer>());
 	
 	public final static int DIMENSIONS = 100; // Side of the arena
-	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 4; // 1 cell per 4 blocks
+	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 8; // 1 cell per 8 blocks
 	public final static int MAX_MASS = MAX_STATIC * 8;
 	public final static int MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000; // 1 virus per 1000 blocks
 	private GameType gameType;
@@ -210,6 +213,9 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		Location spec = new Location(AgarMC.get().getWorld(), DIMENSIONS / 2, 148, DIMENSIONS / 2);
 		spec.setPitch(90);
 		p.teleport(spec);
+		p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+		if (gamePlayers.size() >= SamaGamesAPI.get().getGameManager().getGameProperties().getMaxSlots())
+			this.status = Status.IN_GAME;
 	}
 	
 	@Override
@@ -222,6 +228,8 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		player.onDeath();
 		if (this.gamePlayers.containsKey(p.getUniqueId()))
 			this.gamePlayers.remove(p.getUniqueId());
+		if (gamePlayers.size() < SamaGamesAPI.get().getGameManager().getGameProperties().getMaxSlots())
+			this.status = Status.WAITING_FOR_PLAYERS;
 	}
 	
 	@Override

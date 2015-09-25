@@ -1,7 +1,5 @@
 package net.lnfinity.AgarMC;
 
-import java.lang.reflect.Field;
-
 import net.lnfinity.AgarMC.events.PlayerListener;
 import net.lnfinity.AgarMC.events.WorldListener;
 import net.lnfinity.AgarMC.game.CellSpawner;
@@ -9,11 +7,9 @@ import net.lnfinity.AgarMC.game.Game;
 import net.lnfinity.AgarMC.game.GameLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 import net.lnfinity.AgarMC.game.VirusLoop;
-import net.lnfinity.AgarMC.util.AgarJoinHandler;
 import net.lnfinity.AgarMC.util.GameType;
 import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.Status;
-import net.samagames.api.network.IJoinManager;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -24,14 +20,16 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.google.gson.JsonObject;
+
 public class AgarMC extends JavaPlugin {
 	
 	private static AgarMC instance;
 	private Game game;
 	private ScoreManager scoreManager;
 	
-	public final static String NAME = "CubeWars";
-	public final static String NAME_BICOLOR = ChatColor.GREEN + "" + ChatColor.BOLD + "Cube" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Wars";
+	public final static String NAME = "AgarMC";
+	public final static String NAME_BICOLOR = ChatColor.GREEN + "" + ChatColor.BOLD + "Agar" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MC";
 
 	@Override
 	public void onEnable() {
@@ -47,9 +45,12 @@ public class AgarMC extends JavaPlugin {
 		
 		GameType type;
 		try {
+			JsonObject json = SamaGamesAPI.get().getGameManager().getGameProperties().getConfigs();
+			Bukkit.getLogger().info(json.toString());
 			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("gameType", null).getAsString());
 			Validate.notNull(type);
 		} catch (IllegalArgumentException | NullPointerException e) {
+			e.printStackTrace();
 			Bukkit.getLogger().severe("No GameType provided or invalid one ! /-- STOPPING SERVER --\\");
 			Bukkit.shutdown();
 			return ;
@@ -75,6 +76,7 @@ public class AgarMC extends JavaPlugin {
 			}
 		}, 0L, 10L);
 		
+		/*
 		try {
 			Field f = SamaGamesAPI.get().getClass().getDeclaredField("joinManager");
 			f.setAccessible(true);
@@ -86,6 +88,10 @@ public class AgarMC extends JavaPlugin {
 			e.printStackTrace();
 			Bukkit.shutdown();
 		}
+		/*/
+		game.setStatus(Status.WAITING_FOR_PLAYERS);
+		game.getBeginTimer().cancel();
+		//*/
 	}
 	
 	@Override

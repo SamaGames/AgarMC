@@ -16,6 +16,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -95,9 +97,23 @@ public class PlayerListener implements Listener {
 		}
 		if (cplayer.isPlaying())
 			msg += ChatColor.GRAY + "[" + ChatColor.GREEN + cplayer.getTotalMass() + ChatColor.GRAY + "]";
-		msg += ChatColor.GRAY + " " + ev.getPlayer().getDisplayName() + ": " + ev.getMessage();
+		if (!msg.isEmpty())
+			msg += " ";
+		msg += ChatColor.GRAY + ev.getPlayer().getDisplayName() + ": " + ev.getMessage();
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.sendMessage(msg);
 		Bukkit.getConsoleSender().sendMessage(msg);
+	}
+	
+	@EventHandler
+	public void onPlayerArmorStandClick(PlayerArmorStandManipulateEvent ev)
+	{
+		ev.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void onDropItem(PlayerDropItemEvent ev)
+	{
+		ev.setCancelled(true);
 	}
 }

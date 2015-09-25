@@ -3,7 +3,9 @@ package net.lnfinity.AgarMC.util;
 public enum GameType
 {
 	TEAMS,
-	PARTY;
+	//PARTY, ?
+	//EXPERIMENTAL, ?
+	FFA;
 	
 	public static GameType getType(String name)
 	{

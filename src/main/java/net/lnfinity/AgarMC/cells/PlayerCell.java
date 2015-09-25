@@ -21,7 +21,7 @@ public class PlayerCell extends GreenCell {
 	}
 	
 	public PlayerCell(CPlayer player, int mass, double x, double y, boolean drive) {
-		super(mass, x, y);
+		super(mass, x, y, true);
 		
 		if(drive)
 			player.getPlayer().teleport(new Location(AgarMC.get().getWorld(), x, 128, y));
@@ -33,7 +33,7 @@ public class PlayerCell extends GreenCell {
 		saddle.setCustomName(player.getNick());
 		saddle.setCustomNameVisible(true);
 		
-		armorStand.setPassenger(saddle);
+		slime.setPassenger(saddle);
 		
 		this.player = player;
 		
@@ -54,13 +54,14 @@ public class PlayerCell extends GreenCell {
 		if(saddle.getPassenger() != null) {
 			saddle.setPassenger(null);
 		}
-			
+		slime.remove();
 		saddle.remove();
 	}
 	
 	@Override
 	public void recalculateSize() {
-		super.recalculateSize();
+		int size = (int) (Math.floor(Math.cbrt(this.mass)));
+		slime.setSize(size);
 		
 		if(player != null)
 			player.massChanged();
@@ -143,6 +144,8 @@ public class PlayerCell extends GreenCell {
 	public StaticCell toStaticCell() {
 		saddle.setPassenger(null);
 		saddle.remove();
+		slime.setPassenger(null);
+		slime.remove();
 		armorStand.setPassenger(null);
 		return new StaticCell(mass, armorStand);
 	}
