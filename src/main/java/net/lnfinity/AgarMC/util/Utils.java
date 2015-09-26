@@ -84,27 +84,33 @@ public final class Utils {
 				"\n &12.&0 Objectifs",
 				
 				"\n &lComment jouer ?&0\n" +
-				"\n Vous incarnez une  petite" +
-				" cellule qui doit  grandir" +
-				" avec le temps.\nMangez d'autres" + 
-				" cellules plus  petites pour" +
-				" augmenter  votre taille !",
+				"\n Vous incarnez une\n petite" +
+				" cellule qui doit\n grandir" +
+				" avec le temps\n\n Mangez d'autres\n" + 
+				" cellules plus petites pour\n" +
+				" augmenter votre taille !",
 				
 				"\n &lComment jouer ?&0\n" +
 				"\n Mais attention à vos\n adversaires" +
-				" qui\n peuvent vous manger !\nSoyez" +
+				" qui\n peuvent vous manger\n\n Soyez" +
 				" intelligents et\n restez gros !",
 				
 				"\n       &lObjectifs &0 " +
 				"\n       &lMode &6&lFFA &0 \n\n" +
-				" Chacun pour soi,\n soyez le" +
-				" meilleur de\n tous !",
+				" Chacun pour soi,\n devenez le" +
+				" meilleur\n de tous !",
 				
 				"\n       &lObjectifs &0" +
 				"\n      &lMode &6&lTeams &0 \n\n" +
 				" Gagnez le plus de\n points" +
 				" pour votre\n équipe (&c&lRouge&0," +
-				" &2&lVert&0\n ou &1&lBleu&0) !"
+				" &2&lVert&0\n ou &1&lBleu&0) !",
+				
+				"\n\nJeu développé par :" +
+				"\n\n - &l6infinity8&0" +
+				"\n - &lRigner&0" +
+				"\n\n\n    SamaGames" + 
+				"\n Tout droits réservés."
 		};
 		String[] colored = new String[raw.length];
 		for (int i = 0; i < raw.length; i++)
