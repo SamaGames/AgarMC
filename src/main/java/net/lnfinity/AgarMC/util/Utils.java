@@ -87,8 +87,8 @@ public final class Utils {
 				"\n Vous incarnez une\n petite" +
 				" cellule qui doit\n grandir" +
 				" avec le temps\n\n Mangez d'autres\n" + 
-				" cellules plus petites pour\n" +
-				" augmenter votre taille !",
+				" cellules plus petites\n pour" +
+				" augmenter votre\n taille !",
 				
 				"\n &lComment jouer ?&0\n" +
 				"\n Mais attention à vos\n adversaires" +
@@ -109,7 +109,8 @@ public final class Utils {
 				"\n\nJeu développé par :" +
 				"\n\n - &l6infinity8&0" +
 				"\n - &lRigner&0" +
-				"\n\n\n    SamaGames" + 
+				"\n - &lAmauryPi&0" +
+				"\n\n\n\n\n      SamaGames" + 
 				"\n Tout droits réservés."
 		};
 		String[] colored = new String[raw.length];
