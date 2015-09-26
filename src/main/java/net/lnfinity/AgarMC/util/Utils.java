@@ -83,28 +83,28 @@ public final class Utils {
 				"\n" +
 				"\n &12.&0 Objectifs",
 				
-				"\n]&lComment jouer ?&0[\n" +
-				"\n Vous incarnez  une petite" +
-				" cellule  qui doit grandir" +
-				"  avec le temps.  Mangez d'autres" + 
-				"  cellules plus  petites pour" +
-				"  augmenter votre  taille !",
+				"\n &lComment jouer ?&0\n" +
+				"\n Vous incarnez une  petite" +
+				" cellule qui doit  grandir" +
+				" avec le temps.\nMangez d'autres" + 
+				" cellules plus  petites pour" +
+				" augmenter  votre taille !",
 				
 				"\n &lComment jouer ?&0\n" +
-				"\n Mais attention à vos  adversaires" +
-				" qui  peuvent vous manger !\nSoyez" +
-				"  intelligents et  restez gros !",
+				"\n Mais attention à vos\n adversaires" +
+				" qui\n peuvent vous manger !\nSoyez" +
+				" intelligents et\n restez gros !",
 				
 				"\n       &lObjectifs &0 " +
-				"\n       &lMode &6FFA &0 \n" +
-				" Chacun pour soi,  soyez le" +
-				" meilleur de  tous !",
+				"\n       &lMode &6&lFFA &0 \n\n" +
+				" Chacun pour soi,\n soyez le" +
+				" meilleur de\n tous !",
 				
 				"\n       &lObjectifs &0" +
-				"\n      &lMode &6Teams &0 \n" +
-				" Gagnez le plus de  points" +
-				" pour votre  équipe (&c&lRouge&0," +
-				" &2&lVert&0 ou &1&lBleu&0) !"
+				"\n      &lMode &6&lTeams &0 \n\n" +
+				" Gagnez le plus de\n points" +
+				" pour votre\n équipe (&c&lRouge&0," +
+				" &2&lVert&0\n ou &1&lBleu&0) !"
 		};
 		String[] colored = new String[raw.length];
 		for (int i = 0; i < raw.length; i++)
