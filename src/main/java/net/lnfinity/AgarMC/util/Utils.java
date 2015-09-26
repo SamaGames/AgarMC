@@ -74,8 +74,8 @@ public final class Utils {
 	{
 		String[] raw = new String[]{
 				"\n   ]--------------[" +
-				"\n         §6§lAgarMC§0" +
-				"\n     par SamaGames" +
+				"\n         " + AgarMC.NAME_BICOLOR + "§0" +
+				"\n     par §lSamaGames§0" +
 				"\n   ]--------------[" +
 				"\n" +
 				"\n" +
