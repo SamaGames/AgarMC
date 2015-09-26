@@ -135,7 +135,7 @@ public class PlayerCell extends GreenCell {
 					cell.setCanMerge(true);
 					setCanMerge(true);
 				}
-			}, (long) (mass * 0.2) + 20 * 20L);
+			}, (long) ((mass * 0.2) + 20) * 20L);
 			
 			recalculateSize();
 		}
