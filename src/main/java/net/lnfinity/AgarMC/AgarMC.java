@@ -68,6 +68,7 @@ public class AgarMC extends JavaPlugin {
 		getWorld().getWorldBorder().setWarningDistance(0);
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
+		SamaGamesAPI.get().getResourcePacksManager().forcePack("https://www.dropbox.com/s/7k3x0qr5g5gs166/AgarMC.zip?dl=1");
 		
 		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
 			@Override

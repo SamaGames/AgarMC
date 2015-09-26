@@ -69,10 +69,10 @@ public class GameLoop implements Runnable {
 					if(playerCell.getMass() > virus.getMass() && Math.sqrt(Math.pow(playerCell.getX() - virus.getX(), 2) + Math.pow(playerCell.getY() - virus.getY(), 2)) < playerCell.getRadius() - virus.getRadius()) {
 						AgarMC.get().getGame().removeVirus(virus);
 						Location loc = new Location(AgarMC.get().getWorld(), virus.getX(), 128, virus.getY()); // Using bukkit's location class
-						for(int i = 0; i < Math.floor(playerCell.getMass() / 15); i++) {
+						for(int i = 0; i < 5; i++) {
 							loc.setYaw((float) (Math.random() * 360));
 							loc.setPitch(0);
-							PlayerCell cell = new PlayerCell(player, 15, loc.getX(), loc.getZ());
+							PlayerCell cell = new PlayerCell(player, playerCell.getMass() / 5, loc.getX(), loc.getZ());
 							cell.setVelocity(loc.getDirection().normalize().multiply(2));
 							player.addCell(cell);
 						}
