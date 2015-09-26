@@ -74,58 +74,46 @@ public final class Utils {
 	{
 		String[] raw = new String[]{
 				"\n   ]--------------[" +
-				"\n         &6&lAgarMC&0" +
+				"\n         §6§lAgarMC§0" +
 				"\n     par SamaGames" +
 				"\n   ]--------------[" +
 				"\n" +
 				"\n" +
-				"\n &11.&0 Comment jouer ?" +
+				"\n §11.§0 Comment jouer ?" +
 				"\n" +
-				"\n &12.&0 Objectifs",
+				"\n §12.§0 Objectifs",
 				
-				"\n &lComment jouer ?&0\n" +
+				"\n §lComment jouer ?§0\n" +
 				"\n Vous incarnez une\n petite" +
 				" cellule qui doit\n grandir" +
 				" avec le temps\n\n Mangez d'autres\n" + 
 				" cellules plus petites\n pour" +
 				" augmenter votre\n taille !",
 				
-				"\n &lComment jouer ?&0\n" +
+				"\n §lComment jouer ?§0\n" +
 				"\n Mais attention à vos\n adversaires" +
 				" qui\n peuvent vous manger\n\n Soyez" +
 				" intelligents et\n restez gros !",
 				
-				"\n       &lObjectifs &0 " +
-				"\n       &lMode &6&lFFA &0 \n\n" +
+				"\n       §lObjectifs §0 " +
+				"\n       §lMode §6§lFFA §0 \n\n" +
 				" Chacun pour soi,\n devenez le" +
 				" meilleur\n de tous !",
 				
-				"\n       &lObjectifs &0" +
-				"\n      &lMode &6&lTeams &0 \n\n" +
+				"\n       §lObjectifs §0" +
+				"\n      §lMode §6§lTeams §0 \n\n" +
 				" Gagnez le plus de\n points" +
-				" pour votre\n équipe (&c&lRouge&0," +
-				" &2&lVert&0\n ou &1&lBleu&0) !",
+				" pour votre\n équipe (§c§lRouge§0," +
+				" §2§lVert§0\n ou §1§lBleu§0) !",
 				
 				"\n\nJeu développé par :" +
-				"\n\n - &l6infinity8&0" +
-				"\n - &lRigner&0" +
-				"\n - &lAmauryPi&0" +
+				"\n\n - §l6infinity8§0" +
+				"\n - §lRigner§0" +
+				"\n - §lAmauryPi§0" +
 				"\n\n\n\n\n      SamaGames" + 
 				"\n Tout droits réservés."
 		};
-		String[] colored = new String[raw.length];
-		for (int i = 0; i < raw.length; i++)
-			colored[i] = replaceColors(raw[i]);
-		return colored;
-	}
-	
-	public static String replaceColors(String message)
-	{
-		String s = message;
-		for (ChatColor color : ChatColor.values()) {
-			s = s.replaceAll("(?i)&" + color.getChar(), "" + color);
-		}
-		return s;
+		return raw;
 	}
 	
 	public static double randomLocation(double dimensions)
