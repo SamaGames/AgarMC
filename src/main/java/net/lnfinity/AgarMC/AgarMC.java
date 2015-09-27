@@ -1,5 +1,6 @@
 package net.lnfinity.AgarMC;
 
+import net.lnfinity.AgarMC.events.GameCommand;
 import net.lnfinity.AgarMC.events.PlayerListener;
 import net.lnfinity.AgarMC.events.WorldListener;
 import net.lnfinity.AgarMC.game.CellSpawner;
@@ -93,6 +94,8 @@ public class AgarMC extends JavaPlugin {
 		game.setStatus(Status.WAITING_FOR_PLAYERS);
 		game.getBeginTimer().cancel();
 		//*/
+		
+		Bukkit.getPluginCommand("game").setExecutor(new GameCommand());
 	}
 	
 	@Override
