@@ -220,7 +220,6 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		super.handleLogout(p);
 		if (player != null)
 			player.onDeath();
-		Bukkit.broadcastMessage("Cell toStatic CPlayer --> " + player);
 		if (this.gamePlayers.containsKey(p.getUniqueId()))
 			this.gamePlayers.remove(p.getUniqueId());
 		if (gamePlayers.size() < SamaGamesAPI.get().getGameManager().getGameProperties().getMaxSlots())
