@@ -216,8 +216,8 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	@Override
 	public void handleLogout(Player p)
 	{
-		super.handleLogout(p);
 		CPlayer player = this.gamePlayers.get(p.getUniqueId());
+		super.handleLogout(p);
 		if (player != null)
 			player.onDeath();
 		Bukkit.broadcastMessage("Cell toStatic CPlayer --> " + player);
