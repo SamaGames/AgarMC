@@ -22,8 +22,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.google.gson.JsonObject;
-
 public class AgarMC extends JavaPlugin {
 	
 	private static AgarMC instance;
@@ -48,7 +46,6 @@ public class AgarMC extends JavaPlugin {
 		
 		GameType type;
 		try {
-			JsonObject json = SamaGamesAPI.get().getGameManager().getGameProperties().getConfigs();
 			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("gameType", null).getAsString());
 			Validate.notNull(type);
 		} catch (IllegalArgumentException | NullPointerException e) {
