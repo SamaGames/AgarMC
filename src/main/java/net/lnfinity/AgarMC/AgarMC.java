@@ -49,7 +49,6 @@ public class AgarMC extends JavaPlugin {
 		GameType type;
 		try {
 			JsonObject json = SamaGamesAPI.get().getGameManager().getGameProperties().getConfigs();
-			Bukkit.getLogger().info(json.toString());
 			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("gameType", null).getAsString());
 			Validate.notNull(type);
 		} catch (IllegalArgumentException | NullPointerException e) {
