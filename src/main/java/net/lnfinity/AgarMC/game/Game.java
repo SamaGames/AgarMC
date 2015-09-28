@@ -18,6 +18,7 @@ import net.samagames.api.games.Status;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -220,6 +221,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		CPlayer player = getCPlayer(p);
 		if (player != null)
 			player.onDeath();
+		Bukkit.broadcastMessage("Cell toStatic " + player);
 		if (this.gamePlayers.containsKey(p.getUniqueId()))
 			this.gamePlayers.remove(p.getUniqueId());
 		if (gamePlayers.size() < SamaGamesAPI.get().getGameManager().getGameProperties().getMaxSlots())
