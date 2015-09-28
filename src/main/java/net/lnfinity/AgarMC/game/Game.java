@@ -204,6 +204,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		p.setExp(0);
 		p.setFoodLevel(20);
 		p.setSaturation(20);
+		
 		Location spec = new Location(AgarMC.get().getWorld(), DIMENSIONS / 2, 148, DIMENSIONS / 2);
 		spec.setPitch(90);
 		p.teleport(spec);

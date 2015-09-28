@@ -1,14 +1,23 @@
 package net.lnfinity.AgarMC.game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.util.Utils;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo;
+import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
+import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo.PlayerInfoData;
 import net.samagames.api.games.GamePlayer;
+import net.samagames.tools.Reflection;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class CPlayer extends GamePlayer {
@@ -23,7 +32,9 @@ public class CPlayer extends GamePlayer {
 		this.player = player;
 		
 		color = Utils.getRandomColor();
+		player.setDisplayName(color + player.getName());
 		
+		updateColor();
 		AgarMC.get().getGame().equipSpectatingPlayer(player);
 	}
 
@@ -108,6 +119,7 @@ public class CPlayer extends GamePlayer {
 		setPlaying(true);
 		massChanged();
 		AgarMC.get().getScoreManager().update();
+		updateColor();
 	}
 	
 	public void split() {
@@ -140,5 +152,20 @@ public class CPlayer extends GamePlayer {
 	public ChatColor getColor()
 	{
 		return color;
+	}
+	
+	public void updateColor()
+	{
+		PacketPlayOutPlayerInfo info = new PacketPlayOutPlayerInfo();
+		try {
+			EntityPlayer entity = ((CraftPlayer)player).getHandle();
+			Reflection.setValue(info, "a", EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
+			PlayerInfoData data = info.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a(color + player.getName()));
+			Reflection.setValue(info, "b", Arrays.asList(data));
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		for (Player p : Bukkit.getOnlinePlayers())
+			((CraftPlayer)p).getHandle().playerConnection.sendPacket(info);
 	}
 }

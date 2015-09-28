@@ -32,24 +32,22 @@ public final class Utils {
 			int color = random.nextInt(AgarTeams.values().length);
 			return AgarTeams.values()[color].getColor();
 		}
-		int color = random.nextInt(16);
+		int color = random.nextInt(14);
 		switch(color) {
 		case 0 : return ChatColor.AQUA;
-		case 1 : return ChatColor.BLACK;
-		case 2 : return ChatColor.BLUE;
-		case 3 : return ChatColor.DARK_AQUA;
-		case 4 : return ChatColor.DARK_BLUE;
-		case 5 : return ChatColor.DARK_GRAY;
-		case 6 : return ChatColor.DARK_GREEN;
-		case 7 : return ChatColor.DARK_PURPLE;
-		case 8 : return ChatColor.DARK_RED;
-		case 9 : return ChatColor.GOLD;
-		case 10 : return ChatColor.GRAY;
-		case 11 : return ChatColor.GREEN;
-		case 12 : return ChatColor.LIGHT_PURPLE;
-		case 13 : return ChatColor.RED;
-		case 14 : return ChatColor.WHITE;
-		case 15 : return ChatColor.YELLOW;
+		case 1 : return ChatColor.BLUE;
+		case 2 : return ChatColor.DARK_AQUA;
+		case 3 : return ChatColor.DARK_BLUE;
+		case 4 : return ChatColor.DARK_GREEN;
+		case 5 : return ChatColor.DARK_PURPLE;
+		case 6 : return ChatColor.DARK_RED;
+		case 7 : return ChatColor.GOLD;
+		case 8 : return ChatColor.GRAY;
+		case 9 : return ChatColor.GREEN;
+		case 10 : return ChatColor.LIGHT_PURPLE;
+		case 11 : return ChatColor.RED;
+		case 12 : return ChatColor.WHITE;
+		case 13 : return ChatColor.YELLOW;
 		}
 		return ChatColor.WHITE;
 	}

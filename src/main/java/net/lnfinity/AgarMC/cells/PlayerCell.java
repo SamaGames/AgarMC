@@ -54,6 +54,7 @@ public class PlayerCell extends GreenCell {
 		if(saddle.getPassenger() != null) {
 			saddle.setPassenger(null);
 		}
+		slime.setPassenger(null);
 		slime.remove();
 		saddle.remove();
 	}
@@ -143,8 +144,8 @@ public class PlayerCell extends GreenCell {
 	
 	public StaticCell toStaticCell() {
 		saddle.setPassenger(null);
-		saddle.remove();
 		slime.setPassenger(null);
+		saddle.remove();
 		slime.remove();
 		armorStand.setPassenger(null);
 		return new StaticCell(mass, armorStand);
