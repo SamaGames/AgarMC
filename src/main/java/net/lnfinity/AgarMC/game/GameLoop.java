@@ -59,7 +59,7 @@ public class GameLoop implements Runnable {
 							public void run() {
 								playerCell.setCanMerge(true);
 							}
-						}, (long) (playerCell.getMass() * 0.2) + 20 * 20L);
+						}, (long) ((playerCell.getMass() * 0.2) + 20) * 20L);
 					}
 				}
 				

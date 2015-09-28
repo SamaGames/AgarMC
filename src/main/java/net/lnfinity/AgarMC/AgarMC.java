@@ -6,6 +6,7 @@ import net.lnfinity.AgarMC.events.WorldListener;
 import net.lnfinity.AgarMC.game.CellSpawner;
 import net.lnfinity.AgarMC.game.Game;
 import net.lnfinity.AgarMC.game.GameLoop;
+import net.lnfinity.AgarMC.game.InvisibleLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 import net.lnfinity.AgarMC.game.VirusLoop;
 import net.lnfinity.AgarMC.util.GameType;
@@ -43,6 +44,7 @@ public class AgarMC extends JavaPlugin {
 		this.getServer().getScheduler().runTaskTimer(this, new GameLoop(), 5L, 3L);
 		this.getServer().getScheduler().runTaskTimer(this, new VirusLoop(), 1L, 1L);
 		this.getServer().getScheduler().runTaskTimer(this, new CellSpawner(), 20L, 20L);
+		this.getServer().getScheduler().runTaskTimer(this, new InvisibleLoop(), 1L, 1L);
 		
 		GameType type;
 		try {
@@ -90,6 +92,10 @@ public class AgarMC extends JavaPlugin {
 			e.printStackTrace();
 			Bukkit.shutdown();
 		}
+		
+		TODO
+		Tab -> Les autres
+		
 		/*/
 		game.setStatus(Status.WAITING_FOR_PLAYERS);
 		game.getBeginTimer().cancel();
