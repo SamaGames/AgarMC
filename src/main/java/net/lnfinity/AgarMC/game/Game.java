@@ -178,7 +178,6 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		return mass;
 	}
 	
-	
 	public int getTotalMass() {
 		return getStaticMass() + getPlayersMass();
 	}
