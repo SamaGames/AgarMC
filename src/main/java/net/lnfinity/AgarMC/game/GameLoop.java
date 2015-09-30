@@ -4,6 +4,7 @@ import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.cells.StaticCell;
 import net.lnfinity.AgarMC.cells.VirusCell;
+import net.lnfinity.AgarMC.util.GameType;
 import net.lnfinity.AgarMC.util.Utils;
 
 import org.bukkit.Location;
@@ -39,6 +40,7 @@ public class GameLoop implements Runnable {
 				//** Players Cells **//
 				for(CPlayer opponent : AgarMC.get().getGame().getPlayers()) {
 					if(!opponent.isPlaying() || opponent.equals(player)) continue;
+					if(AgarMC.get().getGame().getGameType() == GameType.TEAMS && player.getColor().equals(opponent.getColor())) continue ;
 					for(PlayerCell opponentCell : opponent.getCells()) {
 						if(playerCell.getMass() > opponentCell.getMass() && Math.sqrt(Math.pow(playerCell.getX() - opponentCell.getX(), 2) + Math.pow(playerCell.getY() - opponentCell.getY(), 2)) < playerCell.getRadius() - opponentCell.getRadius()) {
 							playerCell.increaseMass(opponentCell.getMass());
