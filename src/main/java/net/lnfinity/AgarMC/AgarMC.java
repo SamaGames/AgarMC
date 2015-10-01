@@ -25,12 +25,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class AgarMC extends JavaPlugin {
 	
+	public final static String NAME = "AgarMC";
+	public final static String NAME_BICOLOR = ChatColor.GREEN + "" + ChatColor.BOLD + "Agar" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MC";
+	
 	private static AgarMC instance;
 	private Game game;
 	private ScoreManager scoreManager;
-	
-	public final static String NAME = "AgarMC";
-	public final static String NAME_BICOLOR = ChatColor.GREEN + "" + ChatColor.BOLD + "Agar" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MC";
 
 	@Override
 	public void onEnable() {
@@ -77,26 +77,8 @@ public class AgarMC extends JavaPlugin {
 			}
 		}, 0L, 10L);
 		
-		/*
-		try {
-			Field f = SamaGamesAPI.get().getClass().getDeclaredField("joinManager");
-			f.setAccessible(true);
-			IJoinManager joinManager = (IJoinManager)f.get(SamaGamesAPI.get());
-			joinManager.registerHandler(new AgarJoinHandler(SamaGamesAPI.get().getGameManager()), 100);
-			game.getBeginTimer().cancel();
-			game.setStatus(Status.IN_GAME);
-		} catch(ClassCastException | NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
-			Bukkit.shutdown();
-		}
-		
-		TODO
-		Tab -> Les autres
-		
-		/*/
 		game.setStatus(Status.WAITING_FOR_PLAYERS);
 		game.getBeginTimer().cancel();
-		//*/
 		
 		Bukkit.getPluginCommand("game").setExecutor(new GameCommand());
 	}

@@ -33,13 +33,13 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
 	private final List<VirusCell> virus = Collections.synchronizedList(new ArrayList<VirusCell>());
-	//private final List<CPlayer> players = Collections.synchronizedList(new ArrayList<CPlayer>());
 	
 	public final static int DIMENSIONS = 100; // Side of the arena
 	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 6; // 1 cell per 6 blocks
 	public final static int MAX_MASS = MAX_STATIC * 8;
 	public final static int MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000; // 1 virus per 1000 blocks
 	public final static int MAX_CELL = 16; // 16 cells per player
+	
 	private GameType gameType;
 	
 	public Game(GameType type) {
