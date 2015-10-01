@@ -133,7 +133,6 @@ public class PlayerCell extends GreenCell {
 			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(size);
 			cell.setVelocity(vector);
 			cell.setCanMerge(false);
-			this.setCanMerge(false);
 			player.addCell(cell);
 			
 			AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
@@ -141,7 +140,7 @@ public class PlayerCell extends GreenCell {
 				public void run() {
 					cell.setCanMerge(true);
 				}
-			}, (long) 60L);
+			}, 60L);
 			
 			recalculateSize();
 		}

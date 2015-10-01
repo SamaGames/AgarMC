@@ -55,13 +55,6 @@ public class GameLoop implements Runnable {
 					if(Math.sqrt(Math.pow(playerCell.getX() - other.getX(), 2) + Math.pow(playerCell.getY() - other.getY(), 2)) < playerCell.getRadius() + other.getRadius()) { // (interlocation)
 						playerCell.increaseMass(other.getMass());
 						player.removeCell(other);
-						playerCell.setCanMerge(false);
-						AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
-							@Override
-							public void run() {
-								playerCell.setCanMerge(true);
-							}
-						}, (long) ((playerCell.getMass() * 0.2) + 20) * 20L);
 					}
 				}
 				
