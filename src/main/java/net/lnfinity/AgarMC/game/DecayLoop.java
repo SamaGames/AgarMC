@@ -11,9 +11,9 @@ public class DecayLoop implements Runnable {
 			if(!player.isPlaying()) continue;
 			
 			for(PlayerCell playerCell : player.getCells()) {
-				if(playerCell.getMass() < 50) continue;
+				if(playerCell.getMass() < 500) continue;
 				
-				playerCell.increaseMass((int) - Math.floor(playerCell.getMass() / 50));
+				playerCell.increaseMass((int) - Math.floor(playerCell.getMass() * 0.002));
 			}
 		}
 	}

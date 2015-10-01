@@ -4,6 +4,7 @@ import net.lnfinity.AgarMC.events.GameCommand;
 import net.lnfinity.AgarMC.events.PlayerListener;
 import net.lnfinity.AgarMC.events.WorldListener;
 import net.lnfinity.AgarMC.game.CellSpawner;
+import net.lnfinity.AgarMC.game.DecayLoop;
 import net.lnfinity.AgarMC.game.Game;
 import net.lnfinity.AgarMC.game.GameLoop;
 import net.lnfinity.AgarMC.game.InvisibleLoop;
@@ -35,10 +36,10 @@ public class AgarMC extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		
-		//this.getServer().getPluginManager().registerEvents(new ConnectionListener(), this);
 		this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 		this.getServer().getPluginManager().registerEvents(new WorldListener(), this);
 		
+		this.getServer().getScheduler().runTaskTimer(this, new DecayLoop(), 20L, 20L);
 		this.getServer().getScheduler().runTaskTimer(this, new GameLoop(), 5L, 3L);
 		this.getServer().getScheduler().runTaskTimer(this, new VirusLoop(), 1L, 1L);
 		this.getServer().getScheduler().runTaskTimer(this, new CellSpawner(), 20L, 20L);
