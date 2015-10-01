@@ -140,7 +140,7 @@ public class PlayerCell extends GreenCell {
 				public void run() {
 					cell.setCanMerge(true);
 				}
-			}, 60L);
+			}, 600L);
 			
 			recalculateSize();
 		}
