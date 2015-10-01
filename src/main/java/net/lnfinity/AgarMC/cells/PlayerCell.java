@@ -134,9 +134,8 @@ public class PlayerCell extends GreenCell {
 				@Override
 				public void run() {
 					cell.setCanMerge(true);
-					setCanMerge(true);
 				}
-			}, (long) ((mass * 0.2) + 20) * 20L);
+			}, (long) 60L);
 			
 			recalculateSize();
 		}

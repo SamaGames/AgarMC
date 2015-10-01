@@ -124,6 +124,8 @@ public class CPlayer extends GamePlayer {
 	
 	public void split() {
 		for(PlayerCell cell : getCells()) {
+			if (cells.size() >= Game.MAX_CELL)
+				break ;
 			cell.split();
 		}
 	}
@@ -167,5 +169,10 @@ public class CPlayer extends GamePlayer {
 		}
 		for (Player p : Bukkit.getOnlinePlayers())
 			((CraftPlayer)p).getHandle().playerConnection.sendPacket(info);
+	}
+	
+	public int getCellsCount()
+	{
+		return cells.size();
 	}
 }
