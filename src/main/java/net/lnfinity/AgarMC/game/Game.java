@@ -43,7 +43,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	private GameType gameType;
 	
 	public Game(GameType type) {
-		super("agarmc", "AgarMC", "Cube cube cuuuuuuuuuuuuube", CPlayer.class);
+		super("agarmc", "AgarMC", "EAT EAT EAT EAT EAT", CPlayer.class);
 		gameType = type;
 	}
 	
