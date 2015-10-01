@@ -127,7 +127,10 @@ public class PlayerCell extends GreenCell {
 		if(mass >= 30) {
 			mass = mass / 2 - 1;
 			final PlayerCell cell = new PlayerCell(player, mass, getX(), getY(), false);
-			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(3);
+			int size = (int) (Math.floor(Math.cbrt(this.mass)));
+			if (size < 3)
+				size = 3;
+			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(size);
 			cell.setVelocity(vector);
 			cell.setCanMerge(false);
 			this.setCanMerge(false);
