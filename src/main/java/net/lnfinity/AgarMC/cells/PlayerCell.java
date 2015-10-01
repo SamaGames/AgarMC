@@ -100,11 +100,14 @@ public class PlayerCell extends GreenCell {
 	
 	public void ejectMass() {
 		if(!action) return;
-		if(mass >= 30) {
-			mass -= 10;
-			final StaticCell cell = new StaticCell(8, getX(), getY());
+		if(mass >= 32) {
+			mass -= 16;
+			final StaticCell cell = new StaticCell(12, getX(), getY());
 			cell.setInvinsible(true);
-			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(3);
+			int size = (int) (Math.floor(Math.cbrt(this.mass)));
+			if (size < 3)
+				size = 3;
+			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(size);
 			cell.setVelocity(vector);
 			AgarMC.get().getGame().addStaticCell(cell);
 			

@@ -132,7 +132,8 @@ public class CPlayer extends GamePlayer {
 	
 	public void ejectMass() {
 		for(PlayerCell cell : getCells()) {
-			cell.ejectMass();
+			if (cell.isDriving())
+				cell.ejectMass();
 		}
 	}
 	
