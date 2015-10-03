@@ -43,7 +43,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	private GameType gameType;
 	
 	public Game(GameType type) {
-		super("agarmc", AgarMC.NAME_BICOLOR, ChatColor.DARK_GREEN + "EAT EAT EAT EAT EAT", CPlayer.class);
+		super("agarmc", "AgarMC", "EAT EAT EAT EAT EAT", CPlayer.class);
 		gameType = type;
 	}
 	

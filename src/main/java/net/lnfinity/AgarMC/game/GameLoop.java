@@ -78,6 +78,8 @@ public class GameLoop implements Runnable {
 						}
 						Location loc = new Location(AgarMC.get().getWorld(), virus.getX(), 128, virus.getY()); // Using bukkit's location class
 						n++;
+						if (n > 5)
+							n = 5;
 						for(int i = 0; i < 5 && i < n; i++) {
 							loc.setYaw((float) (Math.random() * 360));
 							loc.setPitch(0);
