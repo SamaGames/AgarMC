@@ -85,6 +85,7 @@ public class GameLoop implements Runnable {
 							loc.setPitch(0);
 							PlayerCell cell = new PlayerCell(player, playerCell.getMass() / n, loc.getX(), loc.getZ());
 							cell.setVelocity(loc.getDirection().normalize().multiply(2));
+							cell.setCanMerge(false);
 							player.addCell(cell);
 							AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
 								@Override
