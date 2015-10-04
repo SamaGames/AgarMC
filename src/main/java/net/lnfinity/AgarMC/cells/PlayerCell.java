@@ -6,6 +6,7 @@ import net.lnfinity.AgarMC.game.CPlayer;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 public class PlayerCell extends GreenCell {
@@ -120,7 +121,7 @@ public class PlayerCell extends GreenCell {
 			
 			recalculateSize();
 		}
-	}
+	}public static BukkitTask task;static int id=0; 
 	
 	public void split() {
 		if(!action) return;

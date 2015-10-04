@@ -17,7 +17,6 @@ import net.samagames.api.games.Status;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -34,7 +33,7 @@ public class AgarMC extends JavaPlugin {
 	private static AgarMC instance;
 	private Game game;
 	private ScoreManager scoreManager;
-	private boolean debug;
+	public boolean debug;
 
 	@Override
 	public void onEnable() {
@@ -78,9 +77,6 @@ public class AgarMC extends JavaPlugin {
 			for (int j = 0; j < 7; j++)
 				this.getWorld().loadChunk(i, j);
 		game.initialize();
-		getWorld().getWorldBorder().setCenter(new Location(getWorld(), Game.DIMENSIONS / 2, 128, Game.DIMENSIONS / 2));
-		getWorld().getWorldBorder().setSize(Game.DIMENSIONS + 8D);
-		getWorld().getWorldBorder().setWarningDistance(0);
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
 		SamaGamesAPI.get().getResourcePacksManager();
