@@ -23,6 +23,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 public class AgarMC extends JavaPlugin {
 	
 	public final static String NAME = "AgarMC";
@@ -31,6 +34,7 @@ public class AgarMC extends JavaPlugin {
 	private static AgarMC instance;
 	private Game game;
 	private ScoreManager scoreManager;
+	private boolean debug;
 
 	@Override
 	public void onEnable() {
@@ -49,13 +53,24 @@ public class AgarMC extends JavaPlugin {
 		try {
 			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("gameType", null).getAsString());
 			Validate.notNull(type);
-		} catch (IllegalArgumentException | NullPointerException e) {
-			e.printStackTrace();
-			Bukkit.getLogger().severe("No GameType provided or invalid one ! /-- STOPPING SERVER --\\");
+		} catch (IllegalArgumentException e) {
+			Bukkit.getLogger().severe("[AgarMC] Invalid GameType in game.json ! /-- STOPPING SERVER --\\");
+			Bukkit.getLogger().severe("[AgarMC] Possible values :");
+			for (GameType t : GameType.values())
+				Bukkit.getLogger().severe("[AgarMC]    - " + t);
+			Bukkit.shutdown();
+			return ;
+		} catch (NullPointerException e) {
+			Bukkit.getLogger().severe("[AgarMC] No GameType in game.json ! /-- STOPPING SERVER --\\");
+			Bukkit.getLogger().severe("[AgarMC] Possible values :");
+			for (GameType t : GameType.values())
+				Bukkit.getLogger().severe("[AgarMC]    - " + t);
 			Bukkit.shutdown();
 			return ;
 		}
-
+		JsonElement e = SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("debug", new JsonPrimitive(false));
+		debug = e.getAsBoolean();
+		
 		game = new Game(type);
 		scoreManager = new ScoreManager();
 		
@@ -106,5 +121,10 @@ public class AgarMC extends JavaPlugin {
 	public ScoreManager getScoreManager()
 	{
 		return scoreManager;
+	}
+	
+	public boolean isDebug()
+	{
+		return debug;
 	}
 }

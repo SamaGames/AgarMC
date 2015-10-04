@@ -29,7 +29,7 @@ public class CellSpawner implements Runnable {
 			AgarMC.get().getGame().addVirus(virus);
 		}
 		
-		if(iterations > 30) {
+		if(iterations > 30 && AgarMC.get().isDebug()) {
 			int sm = AgarMC.get().getGame().getStaticMass();
 			int pm = AgarMC.get().getGame().getPlayersMass();
 			System.out.println("{\"players\":\"" + AgarMC.get().getGame().getPlayers().size() + "\",\"staticCells\":\"" + sm + "\",\"playersCells\":\"" + pm + "\",\"total\":\"" + (sm + pm) + "\",\"virus\":\"" + AgarMC.get().getGame().getVirus().size() + "\"}");
