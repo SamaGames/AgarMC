@@ -169,7 +169,21 @@ public class CPlayer extends GamePlayer {
 			e.printStackTrace();
 		}
 		for (Player p : Bukkit.getOnlinePlayers())
+		{
 			((CraftPlayer)p).getHandle().playerConnection.sendPacket(info);
+			CPlayer cplayer = AgarMC.get().getGame().getCPlayer(p);
+			if (cplayer == null) continue ;
+			PacketPlayOutPlayerInfo info2 = new PacketPlayOutPlayerInfo();
+			try {
+				EntityPlayer entity = ((CraftPlayer)p).getHandle();
+				Reflection.setValue(info2, "a", EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
+				PlayerInfoData data = info2.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a(cplayer.getColor() + p.getName()));
+				Reflection.setValue(info2, "b", Arrays.asList(data));
+			} catch (NoSuchFieldException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+			((CraftPlayer)player).getHandle().playerConnection.sendPacket(info2);
+		}
 	}
 	
 	public int getCellsCount()
