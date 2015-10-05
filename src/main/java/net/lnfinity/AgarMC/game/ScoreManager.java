@@ -44,13 +44,16 @@ public class ScoreManager {
 							newlist[i] = newlist[i + 1];
 							newlist[i + 1] = tmp;
 						}
-				for (int i = 0; i < 10; i++)
-					objective.getScore(ChatColor.GOLD + newlist[i].getNick()).setScore(newlist[i].getTotalMass());
+				for (int i = 0; i < 10; i++) {
+					int mass = newlist[i].getTotalMass();
+					objective.getScore(ChatColor.GOLD + newlist[i].getNick()).setScore(mass < 100 ? 0 : mass - 100);
+				}
 				return ;
 			}
 			for(CPlayer player : list) {
 				if(!player.isPlaying()) continue;
-				objective.getScore(ChatColor.GOLD + player.getNick()).setScore(player.getTotalMass());
+				int mass = player.getTotalMass();
+				objective.getScore(ChatColor.GOLD + player.getNick()).setScore(mass < 100 ? 0 : mass - 100);
 			}
 		}
 		

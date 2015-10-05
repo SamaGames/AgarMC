@@ -83,13 +83,13 @@ public class PlayerListener implements Listener {
 		if (AgarMC.get().getGame().getGameType() == GameType.TEAMS)
 		{
 			AgarTeams team = AgarTeams.getTeam(cplayer.getColor());
-			msg += ChatColor.GRAY + "[" + (team == null ? ChatColor.DARK_RED + "ERROR" : team.getDisplayName()) + ChatColor.GRAY + "]";
+			msg += ChatColor.DARK_GRAY + "[" + (team == null ? ChatColor.DARK_RED + "ERROR" : team.getDisplayName()) + ChatColor.DARK_GRAY + "]";
 		}
 		if (cplayer.isPlaying())
-			msg += ChatColor.GRAY + "[" + ChatColor.GREEN + cplayer.getTotalMass() + ChatColor.GRAY + "]";
+			msg += ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + cplayer.getTotalMass() + ChatColor.DARK_GRAY + "]";
 		if (!msg.isEmpty())
 			msg += " ";
-		msg += ChatColor.GRAY + ev.getPlayer().getDisplayName() + ChatColor.WHITE + ": " + ev.getMessage();
+		msg += ChatColor.DARK_GRAY + ev.getPlayer().getName() + ChatColor.WHITE + ": " + ev.getMessage();
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.sendMessage(msg);
 		Bukkit.getConsoleSender().sendMessage(msg);
