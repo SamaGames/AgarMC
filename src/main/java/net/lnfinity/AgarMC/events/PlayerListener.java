@@ -89,7 +89,7 @@ public class PlayerListener implements Listener {
 			msg += ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + cplayer.getTotalMass() + ChatColor.DARK_GRAY + "]";
 		if (!msg.isEmpty())
 			msg += " ";
-		msg += ChatColor.DARK_GRAY + ev.getPlayer().getName() + ChatColor.WHITE + ": " + ev.getMessage();
+		msg += ChatColor.GRAY + ev.getPlayer().getName() + ChatColor.WHITE + ": " + ev.getMessage();
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.sendMessage(msg);
 		Bukkit.getConsoleSender().sendMessage(msg);
