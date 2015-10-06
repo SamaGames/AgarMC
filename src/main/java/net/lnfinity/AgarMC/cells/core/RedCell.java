@@ -10,10 +10,7 @@ public class RedCell extends Cell {
 			Material.REDSTONE_BLOCK,
 			Material.REDSTONE_BLOCK,
 			Material.RED_SANDSTONE,
-			Material.NETHERRACK,
-			Material.NETHER_BRICK,
-			Material.BRICK,
-			Material.HARD_CLAY
+			Material.NETHERRACK
 	};
 	
 	public RedCell(int mass, double x, double y) {

@@ -76,7 +76,7 @@ public class GameLoop implements Runnable {
 							playerCell.increaseMass(virus.getMass());
 							continue ;
 						}
-						Location loc = new Location(AgarMC.get().getWorld(), virus.getX(), 128, virus.getY()); // Using bukkit's location class
+						Location loc = new Location(AgarMC.get().getWorld(), virus.getX(), Game.ORIGIN.getY(), virus.getY()); // Using bukkit's location class
 						n++;
 						if (n > 5)
 							n = 5;

@@ -18,10 +18,7 @@ public abstract class GreenCell extends Cell {
 			Material.LAPIS_BLOCK,
 			Material.LAPIS_BLOCK,
 			Material.EMERALD_BLOCK,
-			Material.EMERALD_ORE,
-			Material.GRASS,
-			Material.CACTUS,
-			Material.MELON_BLOCK
+			Material.EMERALD_ORE
 	};
 	
 	public GreenCell(int mass, double x, double y, boolean isplayer) {

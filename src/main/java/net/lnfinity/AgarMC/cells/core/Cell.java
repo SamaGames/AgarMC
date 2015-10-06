@@ -1,6 +1,7 @@
 package net.lnfinity.AgarMC.cells.core;
 
 import net.lnfinity.AgarMC.AgarMC;
+import net.lnfinity.AgarMC.game.Game;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 import org.bukkit.Location;
@@ -20,7 +21,7 @@ public abstract class Cell {
 		this.mass = mass;
 		
 		/** Armor Stand **/
-		armorStand = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), ArmorStand.class);
+		armorStand = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, Game.ORIGIN.getY(), y), ArmorStand.class);
 		armorStand.setVisible(false);
 		armorStand.setSmall(true);
 	}

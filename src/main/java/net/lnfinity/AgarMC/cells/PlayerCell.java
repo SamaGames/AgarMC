@@ -3,6 +3,7 @@ package net.lnfinity.AgarMC.cells;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.core.GreenCell;
 import net.lnfinity.AgarMC.game.CPlayer;
+import net.lnfinity.AgarMC.game.Game;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -25,9 +26,9 @@ public class PlayerCell extends GreenCell {
 		super(mass, x, y, true);
 		
 		if(drive)
-			player.getPlayer().teleport(new Location(AgarMC.get().getWorld(), x, 128, y));
+			player.getPlayer().teleport(new Location(AgarMC.get().getWorld(), x, Game.ORIGIN.getY(), y));
 		
-		saddle = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, 128, y), ArmorStand.class);
+		saddle = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, Game.ORIGIN.getY(), y), ArmorStand.class);
 		saddle.setVisible(false);
 		saddle.setSmall(true);
 		
