@@ -1,6 +1,7 @@
 package net.lnfinity.AgarMC.cells.core;
 
 import net.lnfinity.AgarMC.AgarMC;
+import net.lnfinity.AgarMC.game.Game;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -34,7 +35,7 @@ public abstract class GreenCell extends Cell {
 		else
 		{
 			block = null;
-			slime = (Slime)AgarMC.get().getWorld().spawnEntity(new Location(AgarMC.get().getWorld(), x, 128, y), EntityType.SLIME);
+			slime = (Slime)AgarMC.get().getWorld().spawnEntity(new Location(AgarMC.get().getWorld(), x, Game.ORIGIN.getY(), y), EntityType.SLIME);
 			freezeEntity(slime);
 			armorStand.setPassenger(slime);
 		}
