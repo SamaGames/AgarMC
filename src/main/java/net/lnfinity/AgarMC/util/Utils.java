@@ -22,7 +22,10 @@ public final class Utils {
 	}
 
 	public static Vector getDirection(double x1, double y1, double x2, double y2) {
-		return new Vector(x2 - x1, 0, y2 - y1).normalize();
+		Vector vec = new Vector(x2 - x1, 0, y2 - y1);
+		if (vec.length() < 0.001)
+			return vec;
+		return vec.normalize();
 	}
 	
 	public static Vector getDirection(Location loc1, Location loc2) {
