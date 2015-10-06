@@ -14,10 +14,12 @@ import net.lnfinity.AgarMC.cells.VirusCell;
 import net.lnfinity.AgarMC.util.GameType;
 import net.lnfinity.AgarMC.util.Utils;
 import net.samagames.api.SamaGamesAPI;
+import net.samagames.api.games.IGameProperties;
 import net.samagames.api.games.Status;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -34,17 +36,36 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
 	private final List<VirusCell> virus = Collections.synchronizedList(new ArrayList<VirusCell>());
 	
-	public final static int DIMENSIONS = 100; // Side of the arena
-	public final static int MAX_STATIC = DIMENSIONS * DIMENSIONS / 6; // 1 cell per 6 blocks
-	public final static int MAX_MASS = MAX_STATIC * 8;
-	public final static int MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000; // 1 virus per 1000 blocks
-	public final static int MAX_CELL = 16; // 16 cells per player
+	public static Location ORIGIN;
+	public static Location SPAWN;
+	public static int DIMENSIONS; // Side of the arena
+	public static int MAX_STATIC; // 1 cell per 6 blocks
+	public static int MAX_MASS;
+	public static int MAX_VIRUS; // 1 virus per 1000 blocks
+	public static int MAX_CELL = 16; // 16 cells per player
 	
 	private GameType gameType;
 	
 	public Game(GameType type) {
 		super("agarmc", "AgarMC", "EAT EAT EAT EAT EAT", CPlayer.class);
 		gameType = type;
+		try
+        {
+            IGameProperties config = SamaGamesAPI.get().getGameManager().getGameProperties();
+            ORIGIN = Utils.getLocation(config.getOption("origin", null));
+            DIMENSIONS = config.getOption("dimensions", null).getAsInt();
+            MAX_STATIC = DIMENSIONS * DIMENSIONS / 6;
+            MAX_MASS = MAX_STATIC * 8;
+            MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000;
+            Bukkit.getLogger().info("Arena : Origin = " + ORIGIN.toString() + ", Dimensions = " + DIMENSIONS);
+        }
+        catch(Exception e)
+        {
+        	Bukkit.getLogger().severe("Error in game.json ! Stopping server !");
+            e.printStackTrace();
+            Bukkit.shutdown();
+            return ;
+        }
 	}
 	
 	public List<CPlayer> getPlayers() {
@@ -122,12 +143,12 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 			if (!(e instanceof Player))
 				e.remove();
 		for(int i = 0; i < MAX_STATIC / 8; i++) {
-			StaticCell cell = new StaticCell(Utils.randomLocation(DIMENSIONS), Utils.randomLocation(DIMENSIONS));
+			StaticCell cell = new StaticCell(Utils.randomLocation(ORIGIN.getX(), DIMENSIONS), Utils.randomLocation(ORIGIN.getZ(), DIMENSIONS));
 			staticCells.add(cell);
 		}
 		
 		for(int i = 0; i < MAX_VIRUS / 8; i++) {
-			VirusCell cell = new VirusCell(Utils.randomLocation(DIMENSIONS), Utils.randomLocation(DIMENSIONS));
+			VirusCell cell = new VirusCell(Utils.randomLocation(ORIGIN.getX(), DIMENSIONS), Utils.randomLocation(ORIGIN.getZ(), DIMENSIONS));
 			virus.add(cell);
 		}
 	}
@@ -148,6 +169,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		player.setFlying(true);
 		player.getInventory().clear();
 		player.getInventory().setItem(0, constructItem(Material.NETHER_STAR, 1, (byte) 0, ChatColor.AQUA + "" + ChatColor.BOLD + "Jouer", null));
+		player.getInventory().setItem(1, constructItem(Material.WOOL, 1, (byte) 0, ChatColor.AQUA + "" + ChatColor.BOLD + "Jouer", null));
 		player.getInventory().setItem(4, Utils.constructBook(constructItem(Material.WRITTEN_BOOK, 1, (byte) 0, ChatColor.LIGHT_PURPLE + "Règles", Arrays.asList(ChatColor.GRAY + "Visualiser les règles du jeu")), ChatColor.LIGHT_PURPLE + "Règles", "Infinity & Rigner", Utils.getRulesBookText()));
 		player.getInventory().setItem(8, SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem());
 	}
@@ -205,7 +227,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		p.setFoodLevel(20);
 		p.setSaturation(20);
 		
-		Location spec = new Location(AgarMC.get().getWorld(), DIMENSIONS / 2, 148, DIMENSIONS / 2);
+		Location spec = new Location(AgarMC.get().getWorld(), ORIGIN.getX() + DIMENSIONS / 2, ORIGIN.getY() + 20, ORIGIN.getZ() + DIMENSIONS / 2);
 		spec.setPitch(90);
 		p.teleport(spec);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));

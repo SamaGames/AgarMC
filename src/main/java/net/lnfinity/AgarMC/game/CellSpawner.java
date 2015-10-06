@@ -20,12 +20,12 @@ public class CellSpawner implements Runnable {
 		if(playersMass + staticMass < Game.MAX_MASS && staticMass < Game.MAX_STATIC) {
 			int max = AgarMC.get().getGame().getPlayers().size() * 3 + 1;
 			for(int i = 0; i < max; i++) {
-				AgarMC.get().getGame().addStaticCell(new StaticCell(Utils.randomLocation(Game.DIMENSIONS), Utils.randomLocation(Game.DIMENSIONS)));
+				AgarMC.get().getGame().addStaticCell(new StaticCell(Utils.randomLocation(Game.ORIGIN.getX(), Game.DIMENSIONS), Utils.randomLocation(Game.ORIGIN.getZ(), Game.DIMENSIONS)));
 			}
 		}
 		
 		if(AgarMC.get().getGame().getVirus().size() < Game.MAX_VIRUS) {
-			VirusCell virus = new VirusCell(Utils.randomLocation(Game.DIMENSIONS), Utils.randomLocation(Game.DIMENSIONS));
+			VirusCell virus = new VirusCell(Utils.randomLocation(Game.ORIGIN.getX(), Game.DIMENSIONS), Utils.randomLocation(Game.ORIGIN.getZ(), Game.DIMENSIONS));
 			AgarMC.get().getGame().addVirus(virus);
 		}
 		

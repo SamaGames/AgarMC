@@ -25,7 +25,7 @@ public class CPlayer extends GamePlayer {
 	private final Player player;
 	private final List<PlayerCell> cells = new ArrayList<PlayerCell>();
 	private boolean isPlaying = false;
-	private final ChatColor color;
+	private ChatColor color;
 
 	public CPlayer(Player player) {
 		super(player);
@@ -189,5 +189,11 @@ public class CPlayer extends GamePlayer {
 	public int getCellsCount()
 	{
 		return cells.size();
+	}
+	
+	public void setColor(ChatColor newcolor)
+	{
+		color = newcolor;
+		updateColor();
 	}
 }

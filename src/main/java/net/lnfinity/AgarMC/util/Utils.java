@@ -6,9 +6,13 @@ import net.lnfinity.AgarMC.AgarMC;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.util.Vector;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 public final class Utils {
 	
@@ -114,8 +118,27 @@ public final class Utils {
 		return raw;
 	}
 	
-	public static double randomLocation(double dimensions)
+	public static double randomLocation(double origin, double dimensions)
 	{
-		return (0.3D + Math.random() * (dimensions - 0.6D));
+		return origin + (0.3D + Math.random() * (dimensions - 0.6D));
 	}
+
+	public static Location getLocation(JsonElement object)
+    {
+        JsonObject json = object.getAsJsonObject();
+        World world = AgarMC.get().getWorld();
+        double x = json.get("x").getAsDouble() + 0.5;
+        double y = json.get("y").getAsDouble();
+        double z = json.get("z").getAsDouble() + 0.5;
+        try
+        {
+            float yaw = (float)json.get("yaw").getAsDouble();
+            float pitch = (float)json.get("pitch").getAsDouble();
+            return new Location(world, x, y, z, yaw, pitch);
+        }
+        catch (UnsupportedOperationException | NullPointerException ex)
+        {
+            return new Location(world, x, y, z);
+        }
+    }
 }

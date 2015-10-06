@@ -97,4 +97,9 @@ public abstract class Cell {
 	      compound.setByte("NoAI", (byte) 1);
 	      nmsEn.f(compound);
 	  }
+	
+	public Location getLocation()
+	{
+		return armorStand.getLocation();
+	}
 }
