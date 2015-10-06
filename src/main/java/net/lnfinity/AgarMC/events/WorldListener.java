@@ -1,16 +1,16 @@
 package net.lnfinity.AgarMC.events;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class WorldListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onEntityDamage(EntityDamageEvent e) {
 		e.setCancelled(true);
 	}
@@ -31,6 +31,7 @@ public class WorldListener implements Listener {
 			e.setCancelled(true);
 	}
 	
+	/*
 	@EventHandler
 	public void onEntitySpawn(EntitySpawnEvent ev)
 	{
@@ -45,4 +46,5 @@ public class WorldListener implements Listener {
 			ev.setCancelled(true);
 		}
 	}
+	//*/
 }

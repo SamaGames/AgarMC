@@ -63,6 +63,7 @@ public class CellSpawner implements Runnable {
 					}
 				else
 					data = (short)((data + 1) % 16);
+				item.setDurability(data);
 				i.setItem(6, item);
 			}
 		}
