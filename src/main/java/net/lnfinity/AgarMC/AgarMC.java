@@ -50,7 +50,7 @@ public class AgarMC extends JavaPlugin {
 		
 		GameType type;
 		try {
-			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("gameType", null).getAsString());
+			type = GameType.getType(SamaGamesAPI.get().getGameManager().getGameProperties().getOption("gameType", null).getAsString());
 			Validate.notNull(type);
 		} catch (IllegalArgumentException e) {
 			Bukkit.getLogger().severe("[AgarMC] Invalid GameType in game.json ! /-- STOPPING SERVER --\\");
@@ -67,7 +67,7 @@ public class AgarMC extends JavaPlugin {
 			Bukkit.shutdown();
 			return ;
 		}
-		JsonElement e = SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("debug", new JsonPrimitive(false));
+		JsonElement e = SamaGamesAPI.get().getGameManager().getGameProperties().getOption("debug", new JsonPrimitive(false));
 		debug = e.getAsBoolean();
 		
 		game = new Game(type);

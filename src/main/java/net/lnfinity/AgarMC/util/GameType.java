@@ -2,10 +2,22 @@ package net.lnfinity.AgarMC.util;
 
 public enum GameType
 {
-	TEAMS,
+	TEAMS("Jeu en équipe"),
 	//PARTY, ?
 	//EXPERIMENTAL, ?
-	FFA;
+	FFA("Free for all");
+	
+	private String name;
+	
+	private GameType(String n)
+	{
+		name = n;
+	}
+	
+	public String getDisplayName()
+	{
+		return name;
+	}
 	
 	public static GameType getType(String name)
 	{
