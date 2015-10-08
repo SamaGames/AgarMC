@@ -49,22 +49,21 @@ public class TeamSelectorGui
 			list.add(new TeamColor(ChatColor.WHITE, 0, "Blanche"));
 			list.add(new TeamColor(ChatColor.GRAY, 8, "Gris clair"));
 			list.add(new TeamColor(ChatColor.DARK_GRAY, 7, "Gris foncé"));
-			list.add(new TeamColor(ChatColor.BLACK, 15, "Noire"));
+			list.add(new TeamColor(ChatColor.YELLOW, 4, "Jaune"));
 		}
 		list.add(new TeamColor(ChatColor.DARK_RED, 14, "Rouge"));
 		if (type != GameType.TEAMS)
-			list.add(new TeamColor(ChatColor.YELLOW, 4, "Jaune"));
+		{
+			list.add(new TeamColor(ChatColor.LIGHT_PURPLE, 2, "Magenta"));
+			list.add(new TeamColor(ChatColor.DARK_PURPLE, 10, "Violet"));
+			list.add(new TeamColor(ChatColor.DARK_BLUE, 11, "Bleu foncé"));
+			list.add(new TeamColor(ChatColor.DARK_AQUA, 9, "Cyan"));
+			list.add(new TeamColor(ChatColor.AQUA, 3, "Bleu clair"));
+		}	
 		list.add(new TeamColor(ChatColor.GREEN, 5, "Vert"));
 		if (type != GameType.TEAMS)
 			list.add(new TeamColor(ChatColor.DARK_GREEN, 13, "Vert foncé"));
-		list.add(new TeamColor(ChatColor.AQUA, 3, "Bleu clair"));
-		if (type != GameType.TEAMS)
-		{
-			list.add(new TeamColor(ChatColor.DARK_AQUA, 9, "Cyan"));
-			list.add(new TeamColor(ChatColor.DARK_BLUE, 11, "Bleu foncé"));
-			list.add(new TeamColor(ChatColor.LIGHT_PURPLE, 2, "Magenta"));
-			list.add(new TeamColor(ChatColor.DARK_PURPLE, 10, "Violet"));
-		}
+		
 		return list;
 	}
 
