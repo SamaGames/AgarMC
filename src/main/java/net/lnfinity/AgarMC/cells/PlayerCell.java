@@ -7,7 +7,6 @@ import net.lnfinity.AgarMC.game.Game;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 public class PlayerCell extends GreenCell {
@@ -122,7 +121,7 @@ public class PlayerCell extends GreenCell {
 			
 			recalculateSize();
 		}
-	}public static BukkitTask task;static int id=0; 
+	}
 	
 	public void split() {
 		if(!action) return;
@@ -154,6 +153,11 @@ public class PlayerCell extends GreenCell {
 		saddle.remove();
 		slime.remove();
 		armorStand.setPassenger(null);
-		return new StaticCell(mass, armorStand);
+		return new StaticCell(mass > 63 ? 63 : mass, armorStand);
+	}
+	
+	public void updateColor()
+	{
+		saddle.setCustomName(player.getNick());
 	}
 }

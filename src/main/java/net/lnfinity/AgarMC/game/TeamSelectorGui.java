@@ -5,20 +5,23 @@ import java.util.List;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.util.GameType;
-import net.samagames.api.gui.AbstractGui;
+import net.samagames.api.SamaGamesAPI;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class TeamSelectorGui extends AbstractGui
+public class TeamSelectorGui
 {
-
-	@Override
-	public void display(Player arg0)
+	public static final String INV_NAME = "Equipes";
+	
+	public static void display(Player player)
 	{
+		Inventory inventory = Bukkit.createInventory(player, 18, INV_NAME);
 		GameType type = AgarMC.get().getGame().getGameType();
 		List<TeamColor> colors = getColors(type);
 		for (int i = 0; i < colors.size(); i++)
@@ -29,42 +32,56 @@ public class TeamSelectorGui extends AbstractGui
 			ItemMeta meta = item.getItemMeta();
 			meta.setDisplayName(color.getChatColor() + "" + ChatColor.BOLD + "Equipe " + color.getName());
 			item.setItemMeta(meta);
-			this.setSlotData(item, i, "select");
+			inventory.setItem(i, item);
 		}
+		player.openInventory(inventory);
 	}
 	
 	public static List<TeamColor> getColors(GameType type)
 	{
 		List<TeamColor> list = new ArrayList<TeamColor>();
-		int i = 0;
 		if (type != GameType.TEAMS)
 		{
-			list.add(new TeamColor(ChatColor.WHITE, i++, "Blanche"));
-			list.add(new TeamColor(ChatColor.GRAY, i++, "Gris clair"));
-			list.add(new TeamColor(ChatColor.DARK_GRAY, i++, "Gris foncé"));
-			list.add(new TeamColor(ChatColor.BLACK, i++, "Noire"));
+			list.add(new TeamColor(ChatColor.WHITE, 0, "Blanche"));
+			list.add(new TeamColor(ChatColor.GRAY, 8, "Gris clair"));
+			list.add(new TeamColor(ChatColor.DARK_GRAY, 7, "Gris foncé"));
+			list.add(new TeamColor(ChatColor.BLACK, 15, "Noire"));
 		}
-		list.add(new TeamColor(ChatColor.DARK_RED, i++, "Rouge"));
+		list.add(new TeamColor(ChatColor.DARK_RED, 14, "Rouge"));
 		if (type != GameType.TEAMS)
-			list.add(new TeamColor(ChatColor.YELLOW, i++, "Jaune"));
-		list.add(new TeamColor(ChatColor.GREEN, i++, "Vert"));
+			list.add(new TeamColor(ChatColor.YELLOW, 4, "Jaune"));
+		list.add(new TeamColor(ChatColor.GREEN, 5, "Vert"));
 		if (type != GameType.TEAMS)
-			list.add(new TeamColor(ChatColor.DARK_GREEN, i++, "Vert foncé"));
-		list.add(new TeamColor(ChatColor.AQUA, i++, "Bleu clair"));
+			list.add(new TeamColor(ChatColor.DARK_GREEN, 13, "Vert foncé"));
+		list.add(new TeamColor(ChatColor.AQUA, 3, "Bleu clair"));
 		if (type != GameType.TEAMS)
 		{
-			list.add(new TeamColor(ChatColor.DARK_AQUA, i++, "Cyan"));
-			list.add(new TeamColor(ChatColor.DARK_BLUE, i++, "Bleu foncé"));
-			list.add(new TeamColor(ChatColor.LIGHT_PURPLE, i++, "Magenta"));
-			list.add(new TeamColor(ChatColor.DARK_PURPLE, i++, "Violet"));
+			list.add(new TeamColor(ChatColor.DARK_AQUA, 9, "Cyan"));
+			list.add(new TeamColor(ChatColor.DARK_BLUE, 11, "Bleu foncé"));
+			list.add(new TeamColor(ChatColor.LIGHT_PURPLE, 2, "Magenta"));
+			list.add(new TeamColor(ChatColor.DARK_PURPLE, 10, "Violet"));
 		}
 		return list;
 	}
 
-	@Override
-	public void onClick(Player p, ItemStack item, String action)
+	public static void onClick(Player p, ItemStack item)
 	{
-		
+		if (item.getType() == Material.WOODEN_DOOR)
+			SamaGamesAPI.get().getGuiManager().closeGui(p);
+		if (item.getType() != Material.WOOL)
+			return ;
+		for (TeamColor color : getColors(AgarMC.get().getGame().getGameType()))
+			if (color.getData() == item.getDurability())
+			{
+				CPlayer cplayer = AgarMC.get().getGame().getCPlayer(p);
+				if (cplayer != null)
+				{
+					cplayer.setColor(color.getChatColor());
+					cplayer.updateColor();
+					p.sendMessage(ChatColor.YELLOW + "Vous êtes maintenant" + (AgarMC.get().getGame().getGameType() == GameType.TEAMS ? " dans l'équipe" : "") + " : " + color.getDisplayName());
+					return ;
+				}
+			}
 	}
 	
 	public static class TeamColor

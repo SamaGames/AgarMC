@@ -195,5 +195,7 @@ public class CPlayer extends GamePlayer {
 	{
 		color = newcolor;
 		updateColor();
+		for (PlayerCell cell : cells)
+			cell.updateColor();
 	}
 }

@@ -42,7 +42,7 @@ public class PlayerListener implements Listener {
 		} else if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
 			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quitté la partie");
 		} else if(item.getType() == Material.WOOL) {
-			new TeamSelectorGui().display(player);
+			TeamSelectorGui.display(player);
 		}
 		
 		if(!cplayer.isPlaying()) {
@@ -70,6 +70,13 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent ev)
 	{
+		if (!(ev.getWhoClicked() instanceof Player))
+		{
+			ev.setCancelled(true);
+			return ;
+		}
+		if (ev.getInventory().getName().equals(TeamSelectorGui.INV_NAME))
+			TeamSelectorGui.onClick((Player)ev.getWhoClicked(), ev.getCurrentItem());
 		ev.setCancelled(true);
 	}
 	

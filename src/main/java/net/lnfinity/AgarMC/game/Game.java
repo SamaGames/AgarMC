@@ -133,7 +133,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	}
 	
 	public PlayerCell safeSpawn(CPlayer player) {
-		PlayerCell cell = new PlayerCell(player, 100, Math.random() * (DIMENSIONS - 2) + 1 + ORIGIN.getX(), Math.random() * (DIMENSIONS - 2) + 1 + ORIGIN.getZ());
+		PlayerCell cell = new PlayerCell(player, 10, Math.random() * (DIMENSIONS - 2) + 1 + ORIGIN.getX(), Math.random() * (DIMENSIONS - 2) + 1 + ORIGIN.getZ());
 		player.addCell(cell);
 		return cell;
 	}
