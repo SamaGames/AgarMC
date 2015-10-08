@@ -33,7 +33,7 @@ public class AgarMC extends JavaPlugin {
 	private static AgarMC instance;
 	private Game game;
 	private ScoreManager scoreManager;
-	public boolean debug;
+	private boolean debug;
 
 	@Override
 	public void onEnable() {
