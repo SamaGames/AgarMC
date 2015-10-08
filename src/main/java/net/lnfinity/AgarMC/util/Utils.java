@@ -1,8 +1,11 @@
 package net.lnfinity.AgarMC.util;
 
+import java.util.List;
 import java.util.Random;
 
 import net.lnfinity.AgarMC.AgarMC;
+import net.lnfinity.AgarMC.game.TeamSelectorGui;
+import net.lnfinity.AgarMC.game.TeamSelectorGui.TeamColor;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -34,29 +37,8 @@ public final class Utils {
 	
 	public static ChatColor getRandomColor() {
 		GameType type = AgarMC.get().getGame().getGameType();
-		if (type == GameType.TEAMS)
-		{
-			int color = random.nextInt(AgarTeams.values().length);
-			return AgarTeams.values()[color].getColor();
-		}
-		int color = random.nextInt(14);
-		switch(color) {
-		case 0 : return ChatColor.AQUA;
-		case 1 : return ChatColor.BLUE;
-		case 2 : return ChatColor.DARK_AQUA;
-		case 3 : return ChatColor.DARK_BLUE;
-		case 4 : return ChatColor.DARK_GREEN;
-		case 5 : return ChatColor.DARK_PURPLE;
-		case 6 : return ChatColor.DARK_RED;
-		case 7 : return ChatColor.GOLD;
-		case 8 : return ChatColor.GRAY;
-		case 9 : return ChatColor.GREEN;
-		case 10 : return ChatColor.LIGHT_PURPLE;
-		case 11 : return ChatColor.RED;
-		case 12 : return ChatColor.WHITE;
-		case 13 : return ChatColor.YELLOW;
-		}
-		return ChatColor.WHITE;
+		List<TeamColor> list = TeamSelectorGui.getColors(type);
+		return list.get(random.nextInt(list.size())).getChatColor();
 	}
 	
 	public static ItemStack constructBook(ItemStack item, String title, String owner, String[] pages)

@@ -3,7 +3,6 @@ package net.lnfinity.AgarMC.game;
 import java.util.List;
 
 import net.lnfinity.AgarMC.AgarMC;
-import net.lnfinity.AgarMC.util.AgarTeams;
 import net.lnfinity.AgarMC.util.GameType;
 
 import org.bukkit.Bukkit;
@@ -26,7 +25,7 @@ public class ScoreManager {
 		objective.setDisplayName(AgarMC.NAME_BICOLOR);
 		
 		if (AgarMC.get().getGame().getGameType() == GameType.TEAMS){
-			for (AgarTeams team : AgarTeams.values())
+			for (TeamSelectorGui.TeamColor team : TeamSelectorGui.getColors(GameType.TEAMS))
 				objective.getScore(team.getDisplayName()).setScore(team.getTotalMass());
 		}
 		else

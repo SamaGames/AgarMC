@@ -109,7 +109,7 @@ public class PlayerCell extends GreenCell {
 			int size = (int) (Math.floor(Math.cbrt(this.mass)));
 			if (size < 3)
 				size = 3;
-			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(size);
+			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply((double)size / 1.5D);
 			cell.setVelocity(vector);
 			AgarMC.get().getGame().addStaticCell(cell);
 			
@@ -132,7 +132,7 @@ public class PlayerCell extends GreenCell {
 			int size = (int) (Math.floor(Math.cbrt(this.mass)));
 			if (size < 3)
 				size = 3;
-			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(size);
+			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply((double)size / 1.5D);
 			cell.setVelocity(vector);
 			cell.setCanMerge(false);
 			player.addCell(cell);

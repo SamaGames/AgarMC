@@ -2,7 +2,8 @@ package net.lnfinity.AgarMC.events;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.game.CPlayer;
-import net.lnfinity.AgarMC.util.AgarTeams;
+import net.lnfinity.AgarMC.game.TeamSelectorGui;
+import net.lnfinity.AgarMC.game.TeamSelectorGui.TeamColor;
 import net.lnfinity.AgarMC.util.GameType;
 import net.samagames.api.SamaGamesAPI;
 
@@ -40,6 +41,8 @@ public class PlayerListener implements Listener {
 			return ;
 		} else if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
 			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quitté la partie");
+		} else if(item.getType() == Material.WOOL) {
+			new TeamSelectorGui().display(player);
 		}
 		
 		if(!cplayer.isPlaying()) {
@@ -82,7 +85,7 @@ public class PlayerListener implements Listener {
 		String msg = "";
 		if (AgarMC.get().getGame().getGameType() == GameType.TEAMS)
 		{
-			AgarTeams team = AgarTeams.getTeam(cplayer.getColor());
+			TeamColor team = TeamColor.getTeam(cplayer.getColor());
 			msg += ChatColor.DARK_GRAY + "[" + (team == null ? ChatColor.DARK_RED + "ERROR" : team.getDisplayName()) + ChatColor.DARK_GRAY + "]";
 		}
 		if (cplayer.isPlaying())

@@ -52,13 +52,13 @@ public class CellSpawner implements Runnable {
 					switch (data)
 					{
 					case 3:
-						item.setDurability((short) 14);
+						data = 14;
 						break ;
 					case 5:
-						item.setDurability((short) 3);
+						data = 3;
 						break ;
 					case 14:
-						item.setDurability((short) 5);
+						data = 5;
 						break ;
 					}
 				else
