@@ -34,6 +34,11 @@ public class TeamSelectorGui
 			item.setItemMeta(meta);
 			inventory.setItem(i, item);
 		}
+		ItemStack door = new ItemStack(Material.WOODEN_DOOR);
+		ItemMeta meta = door.getItemMeta();
+		meta.setDisplayName(ChatColor.AQUA + "" + ChatColor.BOLD + "Retour");
+		door.setItemMeta(meta);
+		inventory.setItem(17, door);
 		player.openInventory(inventory);
 	}
 	
@@ -67,7 +72,7 @@ public class TeamSelectorGui
 	public static void onClick(Player p, ItemStack item)
 	{
 		if (item.getType() == Material.WOODEN_DOOR)
-			SamaGamesAPI.get().getGuiManager().closeGui(p);
+			p.closeInventory();
 		if (item.getType() != Material.WOOL)
 			return ;
 		for (TeamColor color : getColors(AgarMC.get().getGame().getGameType()))
