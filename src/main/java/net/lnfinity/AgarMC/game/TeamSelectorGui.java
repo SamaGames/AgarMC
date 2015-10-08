@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.util.GameType;
-import net.samagames.api.SamaGamesAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
