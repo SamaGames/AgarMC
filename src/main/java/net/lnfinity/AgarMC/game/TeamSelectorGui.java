@@ -33,7 +33,7 @@ public class TeamSelectorGui
 			item.setItemMeta(meta);
 			inventory.setItem(i, item);
 		}
-		ItemStack door = new ItemStack(Material.WOODEN_DOOR);
+		ItemStack door = new ItemStack(Material.WOOD_DOOR);
 		ItemMeta meta = door.getItemMeta();
 		meta.setDisplayName(ChatColor.AQUA + "" + ChatColor.BOLD + "Retour");
 		door.setItemMeta(meta);
@@ -69,7 +69,7 @@ public class TeamSelectorGui
 
 	public static void onClick(Player p, ItemStack item)
 	{
-		if (item.getType() == Material.WOODEN_DOOR)
+		if (item.getType() == Material.WOOD_DOOR)
 			p.closeInventory();
 		if (item.getType() != Material.WOOL)
 			return ;

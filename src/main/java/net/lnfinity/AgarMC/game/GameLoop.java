@@ -42,7 +42,7 @@ public class GameLoop implements Runnable {
 					if(!opponent.isPlaying() || opponent.equals(player)) continue;
 					if(AgarMC.get().getGame().getGameType() == GameType.TEAMS && player.getColor().equals(opponent.getColor())) continue ;
 					for(PlayerCell opponentCell : opponent.getCells()) {
-						if(playerCell.getMass() > opponentCell.getMass() && Math.sqrt(Math.pow(playerCell.getX() - opponentCell.getX(), 2) + Math.pow(playerCell.getY() - opponentCell.getY(), 2)) < playerCell.getRadius() - opponentCell.getRadius()) {
+						if(playerCell.getMass() > opponentCell.getMass() * 1.1D && Math.sqrt(Math.pow(playerCell.getX() - opponentCell.getX(), 2) + Math.pow(playerCell.getY() - opponentCell.getY(), 2)) < playerCell.getRadius() - opponentCell.getRadius()) {
 							playerCell.increaseMass(opponentCell.getMass());
 							opponent.removeCell(opponentCell);
 						}
