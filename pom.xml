@@ -6,10 +6,6 @@
   <name>Agar</name>
   <description>EAT EAT EAT EAT EAT AND EAT AGAIN</description>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
   <build>
       <plugins>
           <plugin>
@@ -24,6 +20,12 @@
       </plugins>
   </build>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
   <repositories>
     <repository>
       <id>samagames-public</id>
