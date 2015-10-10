@@ -16,6 +16,7 @@ import net.lnfinity.AgarMC.util.Utils;
 import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.IGameProperties;
 import net.samagames.api.games.Status;
+import net.samagames.tools.Titles;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -159,11 +160,8 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		player.getInventory().clear();
 		player.getInventory().setItem(0, constructItem(Material.MAGMA_CREAM, 1, (byte) 0, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Se diviser", Arrays.asList(ChatColor.GRAY + "Divise toutes vos cellules en deux")));
 		player.getInventory().setItem(1, constructItem(Material.SLIME_BALL, 1, (byte) 0, ChatColor.GREEN + "" + ChatColor.BOLD + "Ejecter de la Matière", Arrays.asList(ChatColor.GRAY + "Ejecte une cellule inerte dans votre direction")));
-		player.getInventory().setItem(4, Utils.constructBook(constructItem(Material.WRITTEN_BOOK, 1, (byte) 0, ChatColor.LIGHT_PURPLE + "Règles", Arrays.asList(ChatColor.GRAY + "Visualiser les règles du jeu")), ChatColor.LIGHT_PURPLE + "Règles", "Infinity & Rigner", Utils.getRulesBookText()));
-		if (AgarMC.get().getGame().getGameType() != GameType.TEAMS)
-			player.getInventory().setItem(6, constructItem(Material.WOOL, 1, (byte) 14, ChatColor.AQUA + "" + ChatColor.BOLD + "Choisir sa couleur", null));
-		player.getInventory().setItem(7, constructItem(Material.SNOW_BALL, 1, (byte) 0, ChatColor.AQUA + "Mode spectateur", Arrays.asList(ChatColor.GRAY + "Vous permet de visualiser la partie en cours")));
-		player.getInventory().setItem(8, SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem());
+		player.getInventory().setItem(7, Utils.constructBook(constructItem(Material.WRITTEN_BOOK, 1, (byte) 0, ChatColor.LIGHT_PURPLE + "Règles", Arrays.asList(ChatColor.GRAY + "Visualiser les règles du jeu")), ChatColor.LIGHT_PURPLE + "Règles", "Infinity & Rigner", Utils.getRulesBookText()));
+		player.getInventory().setItem(8, constructItem(Material.DIODE, 1, (byte) 0, ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "Menu", Arrays.asList(ChatColor.GRAY + "Menu du jeu")));
 	}
 
 	public void equipSpectatingPlayer(final Player player) {
@@ -172,11 +170,11 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		player.getInventory().clear();
 		player.getInventory().setItem(0, constructItem(Material.NETHER_STAR, 1, (byte) 0, ChatColor.AQUA + "" + ChatColor.BOLD + "Jouer", null));
 		player.getInventory().setItem(4, Utils.constructBook(constructItem(Material.WRITTEN_BOOK, 1, (byte) 0, ChatColor.LIGHT_PURPLE + "Règles", Arrays.asList(ChatColor.GRAY + "Visualiser les règles du jeu")), ChatColor.LIGHT_PURPLE + "Règles", "Infinity & Rigner", Utils.getRulesBookText()));
-		player.getInventory().setItem(6, constructItem(Material.WOOL, 1, (byte) 14, AgarMC.get().getGame().getGameType() == GameType.TEAMS ? ChatColor.AQUA + "" + ChatColor.BOLD + "Choisir son équipe" : ChatColor.AQUA + "" + ChatColor.BOLD + "Choisir sa couleur", null));
+		player.getInventory().setItem(1, constructItem(Material.WOOL, 1, (byte) 14, AgarMC.get().getGame().getGameType() == GameType.TEAMS ? ChatColor.AQUA + "" + ChatColor.BOLD + "Choisir son équipe" : ChatColor.AQUA + "" + ChatColor.BOLD + "Choisir sa couleur", null));
 		player.getInventory().setItem(8, SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem());
 	}
 
-	public ItemStack constructItem(Material type, int amount, byte data, String display, List<String> lore) {
+	public static ItemStack constructItem(Material type, int amount, byte data, String display, List<String> lore) {
 		ItemStack item = new ItemStack(type, amount, data);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(display);
@@ -235,6 +233,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
 		if (gamePlayers.size() >= SamaGamesAPI.get().getGameManager().getGameProperties().getMaxSlots())
 			this.status = Status.IN_GAME;
+		Titles.sendTabTitle(p, AgarMC.NAME_BICOLOR + "\n", ChatColor.GOLD + "" + ChatColor.BOLD + "\nSamaGames");
 	}
 	
 	@Override

@@ -2,10 +2,10 @@ package net.lnfinity.AgarMC.events;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.game.CPlayer;
+import net.lnfinity.AgarMC.game.MenuGui;
 import net.lnfinity.AgarMC.game.TeamSelectorGui;
 import net.lnfinity.AgarMC.game.TeamSelectorGui.TeamColor;
 import net.lnfinity.AgarMC.util.GameType;
-import net.samagames.api.SamaGamesAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -39,8 +39,6 @@ public class PlayerListener implements Listener {
 		if(item.getType() == Material.WRITTEN_BOOK) {
 			e.setCancelled(false);
 			return ;
-		} else if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
-			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quitté la partie");
 		} else if(item.getType() == Material.WOOL) {
 			TeamSelectorGui.display(player);
 		}
@@ -55,8 +53,8 @@ public class PlayerListener implements Listener {
 				cplayer.split();
 			} else if(item.getType() == Material.SLIME_BALL) {
 				cplayer.ejectMass();
-			} else if(item.getType() == Material.SNOW_BALL) {
-				cplayer.onDeath();
+			} else if(item.getType() == Material.DIODE) {
+				MenuGui.display(player);
 			}
 		}
 	}
@@ -77,6 +75,8 @@ public class PlayerListener implements Listener {
 		}
 		if (ev.getInventory().getName().equals(TeamSelectorGui.INV_NAME))
 			TeamSelectorGui.onClick((Player)ev.getWhoClicked(), ev.getCurrentItem());
+		else if (ev.getInventory().getName().equals(MenuGui.INV_NAME))
+			MenuGui.onClick((Player)ev.getWhoClicked(), ev.getCurrentItem());
 		ev.setCancelled(true);
 	}
 	
