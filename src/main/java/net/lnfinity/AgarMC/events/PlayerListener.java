@@ -6,6 +6,7 @@ import net.lnfinity.AgarMC.game.MenuGui;
 import net.lnfinity.AgarMC.game.TeamSelectorGui;
 import net.lnfinity.AgarMC.game.TeamSelectorGui.TeamColor;
 import net.lnfinity.AgarMC.util.GameType;
+import net.samagames.api.SamaGamesAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -41,6 +42,8 @@ public class PlayerListener implements Listener {
 			return ;
 		} else if(item.getType() == Material.WOOL) {
 			TeamSelectorGui.display(player);
+		} else if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
+			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quitté la partie");
 		}
 		
 		if(!cplayer.isPlaying()) {
