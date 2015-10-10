@@ -6,6 +6,10 @@
   <name>Agar</name>
   <description>EAT EAT EAT EAT EAT AND EAT AGAIN</description>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <build>
       <plugins>
           <plugin>
