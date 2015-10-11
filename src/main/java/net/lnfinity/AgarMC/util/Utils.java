@@ -93,6 +93,11 @@ public final class Utils {
 				" pour votre\n équipe (§c§lRouge§0," +
 				" §2§lVert§0\n ou §1§lBleu§0) !",
 				
+				"\n       §lObjectifs §0" +
+				"\n    §lMode §6§lHardcore §0 \n\n" +
+				" Vous voulez du\n challenge ? Retrouvez" +
+				" le\n FFA en mode Hardcore !",
+				
 				"\n\nJeu développé par :" +
 				"\n\n - §l6infinity8§0" +
 				"\n - §lRigner§0" +
