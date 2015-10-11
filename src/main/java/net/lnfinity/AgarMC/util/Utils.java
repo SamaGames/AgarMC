@@ -95,8 +95,8 @@ public final class Utils {
 				
 				"\n       §lObjectifs §0" +
 				"\n    §lMode §6§lHardcore §0 \n\n" +
-				" Vous voulez du\n challenge ? Retrouvez" +
-				" le\n FFA en mode Hardcore !",
+				" Vous voulez un peu\n de challenge ? Alors\n retrouvez" +
+				" le FFA\n avec le mode\n   §lHardcore§0 !",
 				
 				"\n\nJeu développé par :" +
 				"\n\n - §l6infinity8§0" +

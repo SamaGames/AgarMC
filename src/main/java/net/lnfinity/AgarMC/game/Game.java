@@ -233,7 +233,8 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
 		if (gamePlayers.size() >= SamaGamesAPI.get().getGameManager().getGameProperties().getMaxSlots())
 			this.status = Status.IN_GAME;
-		Titles.sendTabTitle(p, AgarMC.NAME_BICOLOR + "\n", ChatColor.GOLD + "" + ChatColor.BOLD + "\nSamaGames");
+		Titles.sendTabTitle(p, ChatColor.GREEN + "Bienvenue sur " + ChatColor.AQUA + "SamaGames" + ChatColor.GREEN + " !\n", 
+				ChatColor.AQUA + "\nTeamSpeak : " + ChatColor.GREEN + "ts.samagames.net");
 	}
 	
 	@Override
