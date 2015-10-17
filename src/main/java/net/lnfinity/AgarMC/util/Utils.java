@@ -61,49 +61,49 @@ public final class Utils {
 	{
 		String[] raw = new String[]{
 				"\n   ]--------------[" +
-				"\n         " + AgarMC.NAME_BICOLOR + "§0" +
-				"\n     par §lSamaGames§0" +
+				"\n         " + AgarMC.NAME_BICOLOR + "Â§0" +
+				"\n     par Â§lSamaGamesÂ§0" +
 				"\n   ]--------------[" +
 				"\n" +
 				"\n" +
-				"\n §11.§0 Comment jouer ?" +
+				"\n Â§11.Â§0 Comment jouer ?" +
 				"\n" +
-				"\n §12.§0 Objectifs",
+				"\n Â§12.Â§0 Objectifs",
 				
-				"\n §lComment jouer ?§0\n" +
+				"\n Â§lComment jouer ?Â§0\n" +
 				"\n Vous incarnez une\n petite" +
 				" cellule qui doit\n grandir" +
 				" avec le temps\n\n Mangez d'autres\n" + 
 				" cellules plus petites\n pour" +
 				" augmenter votre\n taille !",
 				
-				"\n §lComment jouer ?§0\n" +
-				"\n Mais attention à vos\n adversaires" +
+				"\n Â§lComment jouer ?Â§0\n" +
+				"\n Mais attention Ã  vos\n adversaires" +
 				" qui\n peuvent vous manger\n\n Soyez" +
 				" intelligents et\n restez gros !",
 				
-				"\n       §lObjectifs §0 " +
-				"\n       §lMode §6§lFFA §0 \n\n" +
+				"\n       Â§lObjectifs Â§0 " +
+				"\n       Â§lMode Â§6Â§lFFA Â§0 \n\n" +
 				" Chacun pour soi,\n devenez le" +
 				" meilleur\n de tous !",
 				
-				"\n       §lObjectifs §0" +
-				"\n      §lMode §6§lTeams §0 \n\n" +
+				"\n       Â§lObjectifs Â§0" +
+				"\n      Â§lMode Â§6Â§lTeams Â§0 \n\n" +
 				" Gagnez le plus de\n points" +
-				" pour votre\n équipe (§c§lRouge§0," +
-				" §2§lVert§0\n ou §1§lBleu§0) !",
+				" pour votre\n Ã©quipe (Â§cÂ§lRougeÂ§0," +
+				" Â§2Â§lVertÂ§0\n ou Â§1Â§lBleuÂ§0) !",
 				
-				"\n       §lObjectifs §0" +
-				"\n    §lMode §6§lHardcore §0 \n\n" +
+				"\n       Â§lObjectifs Â§0" +
+				"\n    Â§lMode Â§6Â§lHardcore Â§0 \n\n" +
 				" Vous voulez un peu\n de challenge ? Alors\n retrouvez" +
-				" le FFA\n avec le mode\n   §lHardcore§0 !",
+				" le FFA\n avec le mode\n   Â§lHardcoreÂ§0 !",
 				
-				"\n\nJeu développé par :" +
-				"\n\n - §l6infinity8§0" +
-				"\n - §lRigner§0" +
-				"\n - §lAmauryPi§0" +
+				"\n\nJeu dÃ©veloppÃ© par :" +
+				"\n\n - Â§l6infinity8Â§0" +
+				"\n - Â§lRignerÂ§0" +
+				"\n - Â§lAmauryPiÂ§0" +
 				"\n\n\n\n\n      SamaGames" + 
-				"\n Tout droits réservés."
+				"\n Tout droits rÃ©servÃ©s."
 		};
 		return raw;
 	}
