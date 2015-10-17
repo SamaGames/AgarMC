@@ -43,7 +43,7 @@ public class PlayerListener implements Listener {
 		} else if(item.getType() == Material.WOOL) {
 			TeamSelectorGui.display(player);
 		} else if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
-			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quitté la partie");
+			SamaGamesAPI.get().getGameManager().kickPlayer(player, ChatColor.RED + "Vous avez quittÃ© la partie");
 		}
 		
 		if(!cplayer.isPlaying()) {
