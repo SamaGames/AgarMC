@@ -40,7 +40,7 @@ public class MenuGui
 		}
 		
 		if(item.getType() == SamaGamesAPI.get().getGameManager().getCoherenceMachine().getLeaveItem().getType()) {
-			SamaGamesAPI.get().getGameManager().kickPlayer(p, ChatColor.RED + "Vous avez quitté la partie");
+			SamaGamesAPI.get().getGameManager().kickPlayer(p, ChatColor.RED + "Vous avez quittÃ© la partie");
 		} else if(item.getType() == Material.WOOL) {
 			TeamSelectorGui.display(p);
 		}

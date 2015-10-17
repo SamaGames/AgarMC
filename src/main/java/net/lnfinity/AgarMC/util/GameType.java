@@ -2,7 +2,7 @@ package net.lnfinity.AgarMC.util;
 
 public enum GameType
 {
-	TEAMS("Jeu en équipe"),
+	TEAMS("Jeu en Ã©quipe"),
 	//PARTY, ?
 	//EXPERIMENTAL, ?
 	FFA("Free for all");
