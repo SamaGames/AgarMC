@@ -33,16 +33,23 @@ public class ScoreManager {
 			List<CPlayer> list = AgarMC.get().getGame().getPlayers();
 			if (list.size() > 10)
 			{
-				CPlayer[] newlist = new CPlayer[list.size()];
-				newlist = list.toArray(newlist);
-				for (int j = 0; j < list.size() - 1; j++)
-					for (int i = 0; i < list.size() - 1; i++)
-						if (newlist[i].getTotalMass() < newlist[i + 1].getTotalMass())
+				CPlayer[] newlist = new CPlayer[10];
+				for (int i = 0; i < list.size(); i++)
+				{
+					if (i < 10)
+						newlist[i] = list.get(i);
+					else
+					{
+						int smallest = 0;
+						for (int j = 1; j < 10; j++)
 						{
-							CPlayer tmp = newlist[i];
-							newlist[i] = newlist[i + 1];
-							newlist[i + 1] = tmp;
+							if (newlist[j].getTotalMass() < newlist[smallest].getTotalMass())
+								smallest = j;
 						}
+						if (newlist[smallest].getTotalMass() < list.get(i).getTotalMass())
+							newlist[smallest] = list.get(i);
+					}
+				}
 				for (int i = 0; i < 10; i++) {
 					int mass = newlist[i].getTotalMass();
 					objective.getScore(ChatColor.GOLD + newlist[i].getNick()).setScore(mass);

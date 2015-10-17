@@ -13,14 +13,14 @@ import org.bukkit.command.CommandSender;
 
 public class GameCommand implements CommandExecutor
 {
-	public static final String VERSION = "Pre-V3 - DoingTeamsSelector";
+	public static final String VERSION = "V3 - DebugScoreBoard";
 	
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3)
 	{
 		if (arg3.length == 0)
 		{
-			arg0.sendMessage("AgarMC by Rigner & 6infinity8 ! Version : ");
+			arg0.sendMessage("AgarMC by Rigner & 6infinity8 ! Version : " + VERSION);
 			return true;
 		}
 		if (arg3.length == 1 && arg3[0].equalsIgnoreCase("cells") && arg0.hasPermission("agarmc.debug.cells"))
