@@ -55,7 +55,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
             IGameProperties config = SamaGamesAPI.get().getGameManager().getGameProperties();
             ORIGIN = Utils.getLocation(config.getOption("origin", null));
             DIMENSIONS = config.getOption("dimensions", null).getAsInt();
-            MAX_STATIC = DIMENSIONS * DIMENSIONS / 8;
+            MAX_STATIC = DIMENSIONS * DIMENSIONS / 16;
             MAX_MASS = MAX_STATIC * 8;
             MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000;
             Bukkit.getLogger().info("Arena : Origin = " + ORIGIN.toString() + ", Dimensions = " + DIMENSIONS);
