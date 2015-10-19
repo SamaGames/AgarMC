@@ -24,7 +24,7 @@ public class CellSpawner implements Runnable {
 		int staticMass = AgarMC.get().getGame().getStaticMass();
 		int playersMass = AgarMC.get().getGame().getPlayersMass();
 		if(playersMass + staticMass < Game.MAX_MASS && staticMass < Game.MAX_STATIC) {
-			int max = AgarMC.get().getGame().getPlayers().size() * 3 + 1;
+			int max = AgarMC.get().getGame().getPlayers().size() * 2 + 1;
 			for(int i = 0; i < max; i++) {
 				AgarMC.get().getGame().addStaticCell(new StaticCell(Utils.randomLocation(Game.ORIGIN.getX(), Game.DIMENSIONS), Utils.randomLocation(Game.ORIGIN.getZ(), Game.DIMENSIONS)));
 			}
