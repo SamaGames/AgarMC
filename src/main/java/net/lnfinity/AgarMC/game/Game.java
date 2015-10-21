@@ -40,7 +40,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public static Location ORIGIN;
 	public static Location SPAWN;
 	public static int DIMENSIONS; // Side of the arena
-	public static int MAX_STATIC; // 1 cell per 6 blocks
+	public static int MAX_STATIC; // 1 cell per 24 blocks
 	public static int MAX_MASS;
 	public static int MAX_VIRUS; // 1 virus per 1000 blocks
 	public static int MAX_CELL = 16; // 16 cells per player
@@ -55,7 +55,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
             IGameProperties config = SamaGamesAPI.get().getGameManager().getGameProperties();
             ORIGIN = Utils.getLocation(config.getOption("origin", null));
             DIMENSIONS = config.getOption("dimensions", null).getAsInt();
-            MAX_STATIC = DIMENSIONS * DIMENSIONS / 16;
+            MAX_STATIC = DIMENSIONS * DIMENSIONS / 24;
             MAX_MASS = MAX_STATIC * 8;
             MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000;
             Bukkit.getLogger().info("Arena : Origin = " + ORIGIN.toString() + ", Dimensions = " + DIMENSIONS);
