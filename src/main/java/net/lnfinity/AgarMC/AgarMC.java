@@ -79,7 +79,7 @@ public class AgarMC extends JavaPlugin {
 		game.initialize();
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
-		SamaGamesAPI.get().getResourcePacksManager();
+		//SamaGamesAPI.get().getResourcePacksManager();//TODO WTF
 		
 		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
 			@Override
@@ -92,6 +92,7 @@ public class AgarMC extends JavaPlugin {
 		game.getBeginTimer().cancel();
 		
 		Bukkit.getPluginCommand("game").setExecutor(new GameCommand());
+		SamaGamesAPI.get().getGameManager().disableNature();
 	}
 	
 	@Override

@@ -103,6 +103,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public void removeStaticCell(StaticCell cell) {
 		cell.remove();
 		staticCells.remove(cell);
+		addStaticCell(new StaticCell(Utils.randomLocation(Game.ORIGIN.getX(), Game.DIMENSIONS), Utils.randomLocation(Game.ORIGIN.getZ(), Game.DIMENSIONS)));
 	}
 	
 	public void removePlayer(CPlayer player) {
@@ -143,12 +144,12 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		for (Entity e : AgarMC.get().getWorld().getEntities())
 			if (!(e instanceof Player))
 				e.remove();
-		for(int i = 0; i < MAX_STATIC / 8; i++) {
+		for(int i = 0; i < MAX_STATIC; i++) {
 			StaticCell cell = new StaticCell(Utils.randomLocation(ORIGIN.getX(), DIMENSIONS), Utils.randomLocation(ORIGIN.getZ(), DIMENSIONS));
 			staticCells.add(cell);
 		}
 		
-		for(int i = 0; i < MAX_VIRUS / 8; i++) {
+		for(int i = 0; i < MAX_VIRUS; i++) {
 			VirusCell cell = new VirusCell(Utils.randomLocation(ORIGIN.getX(), DIMENSIONS), Utils.randomLocation(ORIGIN.getZ(), DIMENSIONS));
 			virus.add(cell);
 		}
@@ -261,5 +262,11 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public GameType getGameType()
 	{
 		return gameType;
+	}
+	
+	@Override
+	public void startGame()
+	{
+		
 	}
 }
