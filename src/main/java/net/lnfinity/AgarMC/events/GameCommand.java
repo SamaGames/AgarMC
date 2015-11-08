@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 
 public class GameCommand implements CommandExecutor
 {
-	public static final String VERSION = "V3 - DebugScoreBoard";
+	public static final String VERSION = "V3";
 	
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3)

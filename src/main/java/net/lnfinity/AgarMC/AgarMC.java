@@ -11,8 +11,10 @@ import net.lnfinity.AgarMC.game.InvisibleLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 import net.lnfinity.AgarMC.game.VirusLoop;
 import net.lnfinity.AgarMC.util.GameType;
+import net.minecraft.server.v1_8_R3.PacketPlayInResourcePackStatus.EnumResourcePackStatus;
 import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.Status;
+import net.samagames.api.resourcepacks.IResourceCallback;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -79,7 +81,16 @@ public class AgarMC extends JavaPlugin {
 		game.initialize();
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
-		//SamaGamesAPI.get().getResourcePacksManager();//TODO WTF
+		SamaGamesAPI.get().getResourcePacksManager().forcePack("https://www.dropbox.com/s/7k3x0qr5g5gs166/AgarMC.zip?dl=1", "4d06e751a6bcdaf1bb7e0ff35d22708f", new IResourceCallback()
+		{
+			@Override
+			public boolean automaticKick(Player arg0) {
+				return true;
+			}
+
+			@Override
+			public void callback(Player arg0, EnumResourcePackStatus arg1) {}
+		});
 		
 		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
 			@Override
