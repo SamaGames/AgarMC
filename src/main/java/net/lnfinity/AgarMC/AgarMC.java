@@ -103,7 +103,6 @@ public class AgarMC extends JavaPlugin {
 		game.getBeginTimer().cancel();
 		
 		Bukkit.getPluginCommand("game").setExecutor(new GameCommand());
-		SamaGamesAPI.get().getGameManager().disableNature();
 	}
 	
 	@Override
