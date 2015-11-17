@@ -54,6 +54,9 @@ public class ScoreManager {
 					int mass = newlist[i].getTotalMass();
 					objective.getScore(ChatColor.GOLD + newlist[i].getNick()).setScore(mass);
 				}
+				for(Player player : AgarMC.get().getServer().getOnlinePlayers()) {
+					player.setScoreboard(board);
+				}
 				return ;
 			}
 			for(CPlayer player : list) {
