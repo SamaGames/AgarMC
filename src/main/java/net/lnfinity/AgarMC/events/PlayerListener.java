@@ -71,7 +71,7 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent ev)
 	{
-		if (!(ev.getWhoClicked() instanceof Player))
+		if (!(ev.getWhoClicked() instanceof Player) || ev.getCurrentItem() == null)
 		{
 			ev.setCancelled(true);
 			return ;
