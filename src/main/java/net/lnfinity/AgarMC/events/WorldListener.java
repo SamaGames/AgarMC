@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class WorldListener implements Listener {
@@ -31,7 +32,6 @@ public class WorldListener implements Listener {
 			e.setCancelled(true);
 	}
 	
-	/*
 	@EventHandler
 	public void onEntitySpawn(EntitySpawnEvent ev)
 	{
@@ -46,5 +46,4 @@ public class WorldListener implements Listener {
 			ev.setCancelled(true);
 		}
 	}
-	//*/
 }

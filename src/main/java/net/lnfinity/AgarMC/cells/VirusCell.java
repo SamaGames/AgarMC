@@ -13,6 +13,6 @@ public class VirusCell extends RedCell {
 	}
 
 	public void onEat(PlayerCell playerCell) {
-		
+		playerCell.getClass();//JTE BRAIN SONAR
 	}
 }

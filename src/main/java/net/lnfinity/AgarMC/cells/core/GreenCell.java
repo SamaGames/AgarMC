@@ -65,11 +65,6 @@ public abstract class GreenCell extends Cell {
 	}
 	
 	@Override
-	public void remove() {
-		super.remove();
-	}
-	
-	@Override
 	public Material getMaterial(){
 		int size = (int) (Math.floor(Math.cbrt(this.mass)));
 		if (size >= sizes.length)

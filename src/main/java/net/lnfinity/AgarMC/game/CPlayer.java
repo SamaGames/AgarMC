@@ -51,7 +51,7 @@ public class CPlayer extends GamePlayer {
 
 	public void removeCell(PlayerCell cell) {
 		cells.remove(cell);
-		if (cells.size() >= 1) {
+		if (!cells.isEmpty()) {
 			if(cell.isDriving()) {
 				PlayerCell max = null;
 				for (PlayerCell c : getCells()) {
@@ -72,11 +72,11 @@ public class CPlayer extends GamePlayer {
 	}
 
 	public List<PlayerCell> getCells() {
-		List<PlayerCell> cells = new ArrayList<PlayerCell>();
+		List<PlayerCell> list = new ArrayList<PlayerCell>();
 		for (PlayerCell c : this.cells) {
-			cells.add(c);
+			list.add(c);
 		}
-		return cells;
+		return list;
 	}
 
 	public void onDeath() {

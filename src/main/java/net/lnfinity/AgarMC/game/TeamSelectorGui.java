@@ -18,6 +18,9 @@ public class TeamSelectorGui
 {
 	public static final String INV_NAME = "Equipes";
 	
+	private TeamSelectorGui() {
+	}
+	
 	public static void display(Player player)
 	{
 		Inventory inventory = Bukkit.createInventory(player, 18, INV_NAME);
@@ -125,7 +128,7 @@ public class TeamSelectorGui
 
 		public String getDisplayName()
 		{			
-			return (chat + name);
+			return chat + name;
 		}
 
 		public int getTotalMass()

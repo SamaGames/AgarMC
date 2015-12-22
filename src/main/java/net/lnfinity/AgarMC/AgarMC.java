@@ -3,9 +3,9 @@ package net.lnfinity.AgarMC;
 import net.lnfinity.AgarMC.events.GameCommand;
 import net.lnfinity.AgarMC.events.PlayerListener;
 import net.lnfinity.AgarMC.events.WorldListener;
+import net.lnfinity.AgarMC.game.AgarGame;
 import net.lnfinity.AgarMC.game.CellSpawner;
 import net.lnfinity.AgarMC.game.DecayLoop;
-import net.lnfinity.AgarMC.game.Game;
 import net.lnfinity.AgarMC.game.GameLoop;
 import net.lnfinity.AgarMC.game.InvisibleLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
@@ -33,7 +33,7 @@ public class AgarMC extends JavaPlugin {
 	public final static String NAME_BICOLOR = ChatColor.GREEN + "" + ChatColor.BOLD + "Agar" + ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MC";
 	
 	private static AgarMC instance;
-	private Game game;
+	private AgarGame game;
 	private ScoreManager scoreManager;
 	private boolean debug;
 
@@ -74,7 +74,7 @@ public class AgarMC extends JavaPlugin {
 		JsonElement e = SamaGamesAPI.get().getGameManager().getGameProperties().getOption("debug", new JsonPrimitive(false));
 		debug = e.getAsBoolean();
 		
-		game = new Game(type);
+		game = new AgarGame(type);
 		scoreManager = new ScoreManager();
 		
 		for (int i = 0; i < 7; i++)
@@ -91,7 +91,9 @@ public class AgarMC extends JavaPlugin {
 			}
 
 			@Override
-			public void callback(Player arg0, EnumResourcePackStatus arg1) {}
+			public void callback(Player arg0, EnumResourcePackStatus arg1) {
+				arg0.getClass();//JTE BRAIN SONAR
+			}
 		});
 		
 		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
@@ -123,7 +125,7 @@ public class AgarMC extends JavaPlugin {
 		return this.getServer().getWorlds().get(0);
 	}
 	
-	public Game getGame() {
+	public AgarGame getGame() {
 		return game;
 	}
 	

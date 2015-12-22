@@ -12,25 +12,15 @@ import org.bukkit.inventory.ItemStack;
 
 public class CellSpawner implements Runnable {
 
-	private int iterations = 1;
-	
 	@Override
 	public void run() {
 		AgarMC plugin = AgarMC.get();
-		if (plugin.getGame().getPlayers().size() == 0)
+		if (plugin.getGame().getPlayers().isEmpty())
 			return ;
-		iterations++;
 		
 		if(plugin.getGame().getVirus().size() < plugin.getGame().getMaxVirus()) {
 			VirusCell virus = new VirusCell(Utils.randomLocation(plugin.getGame().getOrigin().getX(), plugin.getGame().getDimensions()), Utils.randomLocation(plugin.getGame().getOrigin().getZ(), plugin.getGame().getDimensions()));
 			plugin.getGame().addVirus(virus);
-		}
-		
-		if(iterations > 30 && plugin.isDebug()) {
-			int sm = plugin.getGame().getStaticMass();
-			int pm = plugin.getGame().getPlayersMass();
-			System.out.println("{\"players\":\"" + plugin.getGame().getPlayers().size() + "\",\"staticCells\":\"" + sm + "\",\"playersCells\":\"" + pm + "\",\"total\":\"" + (sm + pm) + "\",\"virus\":\"" + plugin.getGame().getVirus().size() + "\"}");
-			iterations = 1;
 		}
 		
 		for (CPlayer player : plugin.getGame().getPlayers())
@@ -43,7 +33,6 @@ public class CellSpawner implements Runnable {
 			if (i == null || !i.getName().equals(MenuGui.INV_NAME))
 				continue ;
 			i.setItem(0, updateColorBlock(i.getItem(0)));
-			
 		}
 	}
 
@@ -63,6 +52,8 @@ public class CellSpawner implements Runnable {
 					break ;
 				case 14:
 					data = 5;
+					break ;
+				default:
 					break ;
 				}
 			else

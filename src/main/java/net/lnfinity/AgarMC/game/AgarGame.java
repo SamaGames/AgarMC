@@ -14,6 +14,7 @@ import net.lnfinity.AgarMC.cells.VirusCell;
 import net.lnfinity.AgarMC.util.GameType;
 import net.lnfinity.AgarMC.util.Utils;
 import net.samagames.api.SamaGamesAPI;
+import net.samagames.api.games.Game;
 import net.samagames.api.games.IGameProperties;
 import net.samagames.api.games.Status;
 import net.samagames.tools.Titles;
@@ -32,7 +33,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Game extends net.samagames.api.games.Game<CPlayer> {
+public class AgarGame extends Game<CPlayer> {
 
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
 	private final List<VirusCell> virus = Collections.synchronizedList(new ArrayList<VirusCell>());
@@ -45,7 +46,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	
 	private GameType gameType;
 	
-	public Game(GameType type) {
+	public AgarGame(GameType type) {
 		super("agarmc", "AgarMC", type.getDisplayName(), CPlayer.class);
 		gameType = type;
 		try
@@ -264,7 +265,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	@Override
 	public void startGame()
 	{
-		
+		this.getClass();//JTE BRAIN SONAR
 	}
 	
 	public int getMaxCells()
