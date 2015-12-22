@@ -37,13 +37,11 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
 	private final List<VirusCell> virus = Collections.synchronizedList(new ArrayList<VirusCell>());
 	
-	public static Location origin;
-	public static Location spawn;
-	public static int dimensions; // Side of the arena
-	public static int maxstatic; // 1 cell per 24 blocks
-	public static int maxmass;
-	public static int maxvirus; // 1 virus per 1000 blocks
-	public static int maxcells = 16; // 16 cells per player
+	private Location origin;
+	private int dimensions; // Side of the arena
+	private int maxstatic; // 1 cell per 24 blocks
+	private int maxvirus; // 1 virus per 1000 blocks
+	private int maxcells = 16; // 16 cells per player
 	
 	private GameType gameType;
 	
@@ -56,7 +54,6 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
             origin = Utils.getLocation(config.getOption("origin", null));
             dimensions = config.getOption("dimensions", null).getAsInt();
             maxstatic = dimensions * dimensions / 24;
-            maxmass = maxstatic * 8;
             maxvirus = dimensions * dimensions / 1000;
             Bukkit.getLogger().info("Arena : Origin = " + origin.toString() + ", Dimensions = " + dimensions);
         }
@@ -103,7 +100,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public void removeStaticCell(StaticCell cell) {
 		cell.remove();
 		staticCells.remove(cell);
-		addStaticCell(new StaticCell(Utils.randomLocation(Game.origin.getX(), Game.dimensions), Utils.randomLocation(Game.origin.getZ(), Game.dimensions)));
+		addStaticCell(new StaticCell(Utils.randomLocation(origin.getX(), dimensions), Utils.randomLocation(origin.getZ(), dimensions)));
 	}
 	
 	public void removePlayer(CPlayer player) {
