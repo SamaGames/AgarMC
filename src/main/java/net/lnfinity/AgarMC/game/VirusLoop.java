@@ -24,7 +24,7 @@ public class VirusLoop implements Runnable {
 					if (virus.getMass() > 60) {
 						virus.setMass(27);
 						Vector vector = cell.getVelocity().normalize().multiply(3);
-						if (vector.getX() == 0 && vector.getZ() == 0) {
+						if (vector.getX() < 0.001F && vector.getZ() < 0.001F) {
 							vector = Utils.getDirection(cell.getX(), cell.getY(), virus.getX(), virus.getY()).multiply(3);
 						}
 						final VirusCell newVirus = new VirusCell(virus.getX(), virus.getY());

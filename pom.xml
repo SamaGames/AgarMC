@@ -35,9 +35,15 @@
 
         <dependency>
             <groupId>net.samagames</groupId>
-            <artifactId>SamaGamesAPI</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
+	        <artifactId>SamaGamesAPI</artifactId>
+	        <version>1.0.0</version>
+	        <scope>provided</scope>
+	        <exclusions>
+	            <exclusion>
+	                <groupId>*</groupId>
+	                <artifactId>*</artifactId>
+	            </exclusion>
+	        </exclusions>
         </dependency>
     </dependencies>
 </project>

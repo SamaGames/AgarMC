@@ -124,7 +124,7 @@ public class CPlayer extends GamePlayer {
 	
 	public void split() {
 		for(PlayerCell cell : getCells()) {
-			if (cells.size() >= Game.MAX_CELL)
+			if (cells.size() >= AgarMC.get().getGame().getMaxCells())
 				break ;
 			cell.split();
 		}

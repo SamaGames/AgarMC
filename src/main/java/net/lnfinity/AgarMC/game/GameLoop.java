@@ -14,7 +14,9 @@ public class GameLoop implements Runnable {
 	
 	@Override
 	public void run() {
-		for(CPlayer player : AgarMC.get().getGame().getPlayers()) {
+		AgarMC plugin = AgarMC.get();
+		
+		for(CPlayer player : plugin.getGame().getPlayers()) {
 			if(!player.isPlaying()) continue;
 
 			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply(2);
@@ -30,17 +32,17 @@ public class GameLoop implements Runnable {
 				//### Eating tests ###//
 				
 				//** Static Cells **//
-				for(StaticCell staticCell : AgarMC.get().getGame().getStaticCells()) {
+				for(StaticCell staticCell : plugin.getGame().getStaticCells()) {
 					if(playerCell.getMass() > staticCell.getMass() && Math.sqrt(Math.pow(playerCell.getX() - staticCell.getX(), 2) + Math.pow(playerCell.getY() - staticCell.getY(), 2)) < playerCell.getRadius() - staticCell.getRadius() && !staticCell.isInvinsible()) {
 						playerCell.increaseMass(staticCell.getMass());
-						AgarMC.get().getGame().removeStaticCell(staticCell);
+						plugin.getGame().removeStaticCell(staticCell);
 					}
 				}
 				
 				//** Players Cells **//
-				for(CPlayer opponent : AgarMC.get().getGame().getPlayers()) {
+				for(CPlayer opponent : plugin.getGame().getPlayers()) {
 					if(!opponent.isPlaying() || opponent.equals(player)) continue;
-					if(AgarMC.get().getGame().getGameType() == GameType.TEAMS && player.getColor().equals(opponent.getColor())) continue ;
+					if(plugin.getGame().getGameType() == GameType.TEAMS && player.getColor().equals(opponent.getColor())) continue ;
 					for(PlayerCell opponentCell : opponent.getCells()) {
 						if(playerCell.getMass() > opponentCell.getMass() * 1.1D && Math.sqrt(Math.pow(playerCell.getX() - opponentCell.getX(), 2) + Math.pow(playerCell.getY() - opponentCell.getY(), 2)) < playerCell.getRadius() - opponentCell.getRadius()) {
 							playerCell.increaseMass(opponentCell.getMass());
@@ -56,7 +58,7 @@ public class GameLoop implements Runnable {
 						playerCell.increaseMass(other.getMass());
 						player.removeCell(other);
 						playerCell.setCanMerge(false);
-						AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
+						plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 							@Override
 							public void run() {
 								playerCell.setCanMerge(true);
@@ -66,17 +68,17 @@ public class GameLoop implements Runnable {
 				}
 				
 				//** Virus Cells **//
-				for(VirusCell virus : AgarMC.get().getGame().getVirus()) {
+				for(VirusCell virus : plugin.getGame().getVirus()) {
 					if(playerCell.getMass() < virus.getMass()) continue;
 					if(playerCell.getMass() > virus.getMass() && Math.sqrt(Math.pow(playerCell.getX() - virus.getX(), 2) + Math.pow(playerCell.getY() - virus.getY(), 2)) < playerCell.getRadius() - virus.getRadius()) {
-						AgarMC.get().getGame().removeVirus(virus);
-						int n = Game.MAX_CELL - player.getCellsCount();
+						plugin.getGame().removeVirus(virus);
+						int n = plugin.getGame().getMaxCells() - player.getCellsCount();
 						if (n == 0)
 						{
 							playerCell.increaseMass(virus.getMass());
 							continue ;
 						}
-						Location loc = new Location(AgarMC.get().getWorld(), virus.getX(), Game.ORIGIN.getY(), virus.getY()); // Using bukkit's location class
+						Location loc = new Location(plugin.getWorld(), virus.getX(), plugin.getGame().getOrigin().getY(), virus.getY()); // Using bukkit's location class
 						n++;
 						if (n > 5)
 							n = 5;
@@ -87,7 +89,7 @@ public class GameLoop implements Runnable {
 							cell.setVelocity(loc.getDirection().normalize().multiply(2));
 							cell.setCanMerge(false);
 							player.addCell(cell);
-							AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
+							plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 								@Override
 								public void run() {
 									cell.setCanMerge(true);

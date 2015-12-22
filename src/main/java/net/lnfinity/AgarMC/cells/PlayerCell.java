@@ -3,7 +3,6 @@ package net.lnfinity.AgarMC.cells;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.core.GreenCell;
 import net.lnfinity.AgarMC.game.CPlayer;
-import net.lnfinity.AgarMC.game.Game;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -24,10 +23,12 @@ public class PlayerCell extends GreenCell {
 	public PlayerCell(CPlayer player, int mass, double x, double y, boolean drive) {
 		super(mass, x, y, true);
 		
-		if(drive)
-			player.getPlayer().teleport(new Location(AgarMC.get().getWorld(), x, Game.ORIGIN.getY(), y));
+		AgarMC plugin = AgarMC.get();
 		
-		saddle = AgarMC.get().getWorld().spawn(new Location(AgarMC.get().getWorld(), x, Game.ORIGIN.getY(), y), ArmorStand.class);
+		if(drive)
+			player.getPlayer().teleport(new Location(plugin.getWorld(), x, plugin.getGame().getOrigin().getY(), y));
+		
+		saddle = plugin.getWorld().spawn(new Location(plugin.getWorld(), x, plugin.getGame().getOrigin().getY(), y), ArmorStand.class);
 		saddle.setVisible(false);
 		saddle.setSmall(true);
 		
@@ -40,7 +41,7 @@ public class PlayerCell extends GreenCell {
 		
 		isDriver = drive;
 		
-		AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
+		plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 			@Override
 			public void run() {
 				action = true;
@@ -110,9 +111,11 @@ public class PlayerCell extends GreenCell {
 				size = 3;
 			Vector vector = player.getPlayer().getLocation().getDirection().setY(0).normalize().multiply((double)size / 1.5D);
 			cell.setVelocity(vector);
-			AgarMC.get().getGame().addStaticCell(cell);
 			
-			AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
+			AgarMC plugin = AgarMC.get();
+			plugin.getGame().addStaticCell(cell);
+			
+			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 				@Override
 				public void run() {
 					cell.setInvinsible(false);
@@ -136,7 +139,9 @@ public class PlayerCell extends GreenCell {
 			cell.setCanMerge(false);
 			player.addCell(cell);
 			
-			AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
+			AgarMC plugin = AgarMC.get();
+			
+			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 				@Override
 				public void run() {
 					cell.setCanMerge(true);

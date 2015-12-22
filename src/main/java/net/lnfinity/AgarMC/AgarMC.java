@@ -37,10 +37,12 @@ public class AgarMC extends JavaPlugin {
 	private ScoreManager scoreManager;
 	private boolean debug;
 
+	public AgarMC() {
+		instance = this;
+	}
+	
 	@Override
 	public void onEnable() {
-		instance = this;
-		
 		this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 		this.getServer().getPluginManager().registerEvents(new WorldListener(), this);
 		

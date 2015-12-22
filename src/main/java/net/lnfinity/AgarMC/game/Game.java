@@ -37,13 +37,13 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	private final List<StaticCell> staticCells = Collections.synchronizedList(new ArrayList<StaticCell>());
 	private final List<VirusCell> virus = Collections.synchronizedList(new ArrayList<VirusCell>());
 	
-	public static Location ORIGIN;
-	public static Location SPAWN;
-	public static int DIMENSIONS; // Side of the arena
-	public static int MAX_STATIC; // 1 cell per 24 blocks
-	public static int MAX_MASS;
-	public static int MAX_VIRUS; // 1 virus per 1000 blocks
-	public static int MAX_CELL = 16; // 16 cells per player
+	public static Location origin;
+	public static Location spawn;
+	public static int dimensions; // Side of the arena
+	public static int maxstatic; // 1 cell per 24 blocks
+	public static int maxmass;
+	public static int maxvirus; // 1 virus per 1000 blocks
+	public static int maxcells = 16; // 16 cells per player
 	
 	private GameType gameType;
 	
@@ -53,12 +53,12 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		try
         {
             IGameProperties config = SamaGamesAPI.get().getGameManager().getGameProperties();
-            ORIGIN = Utils.getLocation(config.getOption("origin", null));
-            DIMENSIONS = config.getOption("dimensions", null).getAsInt();
-            MAX_STATIC = DIMENSIONS * DIMENSIONS / 24;
-            MAX_MASS = MAX_STATIC * 8;
-            MAX_VIRUS = DIMENSIONS * DIMENSIONS / 1000;
-            Bukkit.getLogger().info("Arena : Origin = " + ORIGIN.toString() + ", Dimensions = " + DIMENSIONS);
+            origin = Utils.getLocation(config.getOption("origin", null));
+            dimensions = config.getOption("dimensions", null).getAsInt();
+            maxstatic = dimensions * dimensions / 24;
+            maxmass = maxstatic * 8;
+            maxvirus = dimensions * dimensions / 1000;
+            Bukkit.getLogger().info("Arena : Origin = " + origin.toString() + ", Dimensions = " + dimensions);
         }
         catch(Exception e)
         {
@@ -103,7 +103,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public void removeStaticCell(StaticCell cell) {
 		cell.remove();
 		staticCells.remove(cell);
-		addStaticCell(new StaticCell(Utils.randomLocation(Game.ORIGIN.getX(), Game.DIMENSIONS), Utils.randomLocation(Game.ORIGIN.getZ(), Game.DIMENSIONS)));
+		addStaticCell(new StaticCell(Utils.randomLocation(Game.origin.getX(), Game.dimensions), Utils.randomLocation(Game.origin.getZ(), Game.dimensions)));
 	}
 	
 	public void removePlayer(CPlayer player) {
@@ -135,7 +135,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	}
 	
 	public PlayerCell safeSpawn(CPlayer player) {
-		PlayerCell cell = new PlayerCell(player, 10, Math.random() * (DIMENSIONS - 2) + 1 + ORIGIN.getX(), Math.random() * (DIMENSIONS - 2) + 1 + ORIGIN.getZ());
+		PlayerCell cell = new PlayerCell(player, 10, Math.random() * (dimensions - 2) + 1 + origin.getX(), Math.random() * (dimensions - 2) + 1 + origin.getZ());
 		player.addCell(cell);
 		return cell;
 	}
@@ -144,13 +144,13 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		for (Entity e : AgarMC.get().getWorld().getEntities())
 			if (!(e instanceof Player))
 				e.remove();
-		for(int i = 0; i < MAX_STATIC; i++) {
-			StaticCell cell = new StaticCell(Utils.randomLocation(ORIGIN.getX(), DIMENSIONS), Utils.randomLocation(ORIGIN.getZ(), DIMENSIONS));
+		for(int i = 0; i < maxstatic; i++) {
+			StaticCell cell = new StaticCell(Utils.randomLocation(origin.getX(), dimensions), Utils.randomLocation(origin.getZ(), dimensions));
 			staticCells.add(cell);
 		}
 		
-		for(int i = 0; i < MAX_VIRUS; i++) {
-			VirusCell cell = new VirusCell(Utils.randomLocation(ORIGIN.getX(), DIMENSIONS), Utils.randomLocation(ORIGIN.getZ(), DIMENSIONS));
+		for(int i = 0; i < maxstatic; i++) {
+			VirusCell cell = new VirusCell(Utils.randomLocation(origin.getX(), dimensions), Utils.randomLocation(origin.getZ(), dimensions));
 			virus.add(cell);
 		}
 	}
@@ -228,7 +228,7 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 		p.setFoodLevel(20);
 		p.setSaturation(20);
 		
-		Location spec = new Location(AgarMC.get().getWorld(), ORIGIN.getX() + DIMENSIONS / 2, ORIGIN.getY() + 20, ORIGIN.getZ() + DIMENSIONS / 2);
+		Location spec = new Location(AgarMC.get().getWorld(), origin.getX() + dimensions / 2, origin.getY() + 20, origin.getZ() + dimensions / 2);
 		spec.setPitch(90);
 		p.teleport(spec);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
@@ -268,5 +268,25 @@ public class Game extends net.samagames.api.games.Game<CPlayer> {
 	public void startGame()
 	{
 		
+	}
+	
+	public int getMaxCells()
+	{
+		return maxcells;
+	}
+	
+	public Location getOrigin()
+	{
+		return origin.clone();
+	}
+	
+	public int getMaxVirus()
+	{
+		return maxvirus;
+	}
+	
+	public int getDimensions()
+	{
+		return dimensions;
 	}
 }
