@@ -1,0 +1,11 @@
+name: AgarMC
+description: Eat.
+main: net.lnfinity.AgarMC.AgarMC
+version: 1.0
+author: 6infinity8
+depend: [SamaGamesAPI]
+
+commands:
+  game:
+    description:
+    usage:
