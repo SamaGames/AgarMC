@@ -11,7 +11,7 @@ import net.lnfinity.AgarMC.game.InvisibleLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 import net.lnfinity.AgarMC.game.VirusLoop;
 import net.lnfinity.AgarMC.util.GameType;
-import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.Status;
 import net.samagames.api.resourcepacks.IResourceCallback;
