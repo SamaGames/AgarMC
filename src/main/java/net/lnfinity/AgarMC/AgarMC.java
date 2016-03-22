@@ -11,7 +11,7 @@ import net.lnfinity.AgarMC.game.InvisibleLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 import net.lnfinity.AgarMC.game.VirusLoop;
 import net.lnfinity.AgarMC.util.GameType;
-import net.minecraft.server.v1_8_R3.PacketPlayInResourcePackStatus.EnumResourcePackStatus;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
 import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.Status;
 import net.samagames.api.resourcepacks.IResourceCallback;
@@ -91,7 +91,7 @@ public class AgarMC extends JavaPlugin {
 			}
 
 			@Override
-			public void callback(Player arg0, EnumResourcePackStatus arg1) {
+			public void callback(Player arg0, PlayerResourcePackStatusEvent.Status arg1) {
 				arg0.getClass();//JTE BRAIN SONAR
 			}
 		});
