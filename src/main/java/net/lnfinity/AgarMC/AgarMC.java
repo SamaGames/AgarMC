@@ -83,18 +83,7 @@ public class AgarMC extends JavaPlugin {
 		game.initialize();
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
-		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://samagames.net/packs/AgarMC.zip", new IResourceCallback()
-		{
-			@Override
-			public boolean automaticKick(Player arg0) {
-				return true;
-			}
-
-			@Override
-			public void callback(Player arg0, PlayerResourcePackStatusEvent.Status arg1) {
-				arg0.getClass();//JTE BRAIN SONAR
-			}
-		});
+		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://resources.samagames.net/AgarMC.zip", null);
 		
 		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
 			@Override
