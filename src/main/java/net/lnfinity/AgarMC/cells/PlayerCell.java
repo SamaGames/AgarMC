@@ -41,12 +41,7 @@ public class PlayerCell extends GreenCell {
 		
 		isDriver = drive;
 		
-		plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-			@Override
-			public void run() {
-				action = true;
-			}
-		}, 20L);
+		plugin.getServer().getScheduler().runTaskLater(plugin, () -> action = true, 20L);
 	}
 
 	@Override
@@ -115,12 +110,7 @@ public class PlayerCell extends GreenCell {
 			AgarMC plugin = AgarMC.get();
 			plugin.getGame().addStaticCell(cell);
 			
-			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-				@Override
-				public void run() {
-					cell.setInvinsible(false);
-				}
-			}, 10L);
+			plugin.getServer().getScheduler().runTaskLater(plugin, () -> cell.setInvinsible(false), 10L);
 			
 			recalculateSize();
 		}
@@ -141,12 +131,7 @@ public class PlayerCell extends GreenCell {
 			
 			AgarMC plugin = AgarMC.get();
 			
-			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-				@Override
-				public void run() {
-					cell.setCanMerge(true);
-				}
-			}, 600L);
+			plugin.getServer().getScheduler().runTaskLater(plugin, () -> cell.setCanMerge(true), 600L);
 			
 			recalculateSize();
 		}

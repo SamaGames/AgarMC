@@ -29,12 +29,7 @@ public class VirusLoop implements Runnable {
 						}
 						final VirusCell newVirus = new VirusCell(virus.getX(), virus.getY());
 						newVirus.setInvinsible(true);
-						AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), new Runnable() {
-							@Override
-							public void run() {
-								newVirus.setInvinsible(false);
-							}
-						}, 10L);
+						AgarMC.get().getServer().getScheduler().runTaskLater(AgarMC.get(), () -> newVirus.setInvinsible(false), 10L);
 						newVirus.setVelocity(vector);
 						AgarMC.get().getGame().addVirus(newVirus);
 					}

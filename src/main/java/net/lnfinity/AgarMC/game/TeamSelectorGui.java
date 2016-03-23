@@ -46,7 +46,7 @@ public class TeamSelectorGui
 	
 	public static List<TeamColor> getColors(GameType type)
 	{
-		List<TeamColor> list = new ArrayList<TeamColor>();
+		List<TeamColor> list = new ArrayList<>();
 		if (type != GameType.TEAMS)
 		{
 			list.add(new TeamColor(ChatColor.WHITE, 0, "Blanche"));

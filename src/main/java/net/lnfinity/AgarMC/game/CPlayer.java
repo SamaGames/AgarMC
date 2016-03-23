@@ -7,23 +7,23 @@ import java.util.List;
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.util.Utils;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo.PlayerInfoData;
+import net.minecraft.server.v1_9_R1.EntityPlayer;
+import net.minecraft.server.v1_9_R1.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_9_R1.PacketPlayOutPlayerInfo;
+import net.minecraft.server.v1_9_R1.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
+import net.minecraft.server.v1_9_R1.PacketPlayOutPlayerInfo.PlayerInfoData;
 import net.samagames.api.games.GamePlayer;
 import net.samagames.tools.Reflection;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class CPlayer extends GamePlayer {
 
 	private final Player player;
-	private final List<PlayerCell> cells = new ArrayList<PlayerCell>();
+	private final List<PlayerCell> cells = new ArrayList<>();
 	private boolean isPlaying = false;
 	private ChatColor color;
 
@@ -59,7 +59,8 @@ public class CPlayer extends GamePlayer {
 						max = c;
 					}
 				}
-				max.setDriving(true);
+				if (max != null)
+					max.setDriving(true);
 			}
 		} else {
 			onDeath();
@@ -72,7 +73,7 @@ public class CPlayer extends GamePlayer {
 	}
 
 	public List<PlayerCell> getCells() {
-		List<PlayerCell> list = new ArrayList<PlayerCell>();
+		List<PlayerCell> list = new ArrayList<>();
 		for (PlayerCell c : this.cells) {
 			list.add(c);
 		}

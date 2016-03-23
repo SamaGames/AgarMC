@@ -1,11 +1,11 @@
 package net.lnfinity.AgarMC.cells.core;
 
 import net.lnfinity.AgarMC.AgarMC;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_9_R1.NBTTagCompound;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
@@ -91,7 +91,7 @@ public abstract class Cell {
 	}
 	
 	protected void freezeEntity(Entity en){
-	      net.minecraft.server.v1_8_R3.Entity nmsEn = ((CraftEntity) en).getHandle();
+	      net.minecraft.server.v1_9_R1.Entity nmsEn = ((CraftEntity) en).getHandle();
 	      NBTTagCompound compound = new NBTTagCompound();
 	      nmsEn.c(compound);
 	      compound.setByte("NoAI", (byte) 1);

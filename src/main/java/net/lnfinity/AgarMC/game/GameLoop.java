@@ -58,12 +58,7 @@ public class GameLoop implements Runnable {
 						playerCell.increaseMass(other.getMass());
 						player.removeCell(other);
 						playerCell.setCanMerge(false);
-						plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-							@Override
-							public void run() {
-								playerCell.setCanMerge(true);
-							}
-						}, 1L);
+						plugin.getServer().getScheduler().runTaskLater(plugin, () -> playerCell.setCanMerge(true), 1L);
 					}
 				}
 				
@@ -89,12 +84,7 @@ public class GameLoop implements Runnable {
 							cell.setVelocity(loc.getDirection().normalize().multiply(2));
 							cell.setCanMerge(false);
 							player.addCell(cell);
-							plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-								@Override
-								public void run() {
-									cell.setCanMerge(true);
-								}
-							}, 600L);
+							plugin.getServer().getScheduler().runTaskLater(plugin, () -> cell.setCanMerge(true), 600L);
 						}
 						
 						player.removeCell(playerCell);
