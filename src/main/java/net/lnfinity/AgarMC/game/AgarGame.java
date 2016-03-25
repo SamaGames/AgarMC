@@ -147,7 +147,7 @@ public class AgarGame extends Game<CPlayer> {
 			staticCells.add(cell);
 		}
 		
-		for(int i = 0; i < maxstatic; i++) {
+		for(int i = 0; i < maxvirus; i++) {
 			VirusCell cell = new VirusCell(Utils.randomLocation(origin.getX(), dimensions), Utils.randomLocation(origin.getZ(), dimensions));
 			virus.add(cell);
 		}
