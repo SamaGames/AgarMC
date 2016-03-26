@@ -83,7 +83,7 @@ public class AgarMC extends JavaPlugin {
 		game.initialize();
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
-		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://resources.samagames.net/AgarMC.zip", null);
+		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://resources.samagames.net/AgarMC.zip", "4d06e751a6bcdaf1bb7e0ff35d22708f", null);
 		
 		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
 			@Override
