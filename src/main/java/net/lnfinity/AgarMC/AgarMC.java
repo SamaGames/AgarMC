@@ -22,9 +22,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
 public class AgarMC extends JavaPlugin {
 	
 	public final static String NAME = "AgarMC";
@@ -78,7 +75,7 @@ public class AgarMC extends JavaPlugin {
 		game.initialize();
 		
 		SamaGamesAPI.get().getGameManager().registerGame(game);
-		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://resources.samagames.net/AgarMC.zip", null);
+		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://resources.samagames.net/AgarMC.zip", "4d06e751a6bcdaf1bb7e0ff35d22708f", null);
 		
 		this.getServer().getScheduler().runTaskTimer(this, scoreManager::update, 0L, 10L);
 		
