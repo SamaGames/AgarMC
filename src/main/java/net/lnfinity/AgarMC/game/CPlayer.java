@@ -164,7 +164,7 @@ public class CPlayer extends GamePlayer {
 		try {
 			EntityPlayer entity = ((CraftPlayer)player).getHandle();
 			Reflection.setValue(info, "a", EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
-			PlayerInfoData data = info.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a(color + player.getName()));
+			PlayerInfoData data = info.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a("{\"text\":\"" + color + player.getName() + "\"}"));
 			Reflection.setValue(info, "b", Arrays.asList(data));
 		} catch (NoSuchFieldException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -178,7 +178,7 @@ public class CPlayer extends GamePlayer {
 			try {
 				EntityPlayer entity = ((CraftPlayer)p).getHandle();
 				Reflection.setValue(info2, "a", EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
-				PlayerInfoData data = info2.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a(cplayer.getColor() + p.getName()));
+				PlayerInfoData data = info2.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a("{\"text\":\"" + cplayer.getColor() + p.getName() + "\"}"));
 				Reflection.setValue(info2, "b", Arrays.asList(data));
 			} catch (NoSuchFieldException | IllegalAccessException e) {
 				e.printStackTrace();
