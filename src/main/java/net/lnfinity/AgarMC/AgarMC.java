@@ -11,8 +11,10 @@ import net.lnfinity.AgarMC.game.InvisibleLoop;
 import net.lnfinity.AgarMC.game.ScoreManager;
 import net.lnfinity.AgarMC.game.VirusLoop;
 import net.lnfinity.AgarMC.util.GameType;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.Status;
+import net.samagames.api.resourcepacks.IResourceCallback;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -22,6 +24,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 public class AgarMC extends JavaPlugin {
 	
 	public final static String NAME = "AgarMC";
@@ -30,6 +35,7 @@ public class AgarMC extends JavaPlugin {
 	private static AgarMC instance;
 	private AgarGame game;
 	private ScoreManager scoreManager;
+	private boolean debug;
 
 	public AgarMC() {
 		instance = this;
@@ -65,6 +71,8 @@ public class AgarMC extends JavaPlugin {
 			Bukkit.shutdown();
 			return ;
 		}
+		JsonElement e = SamaGamesAPI.get().getGameManager().getGameProperties().getOption("debug", new JsonPrimitive(false));
+		debug = e.getAsBoolean();
 		
 		game = new AgarGame(type);
 		scoreManager = new ScoreManager();
@@ -77,7 +85,12 @@ public class AgarMC extends JavaPlugin {
 		SamaGamesAPI.get().getGameManager().registerGame(game);
 		SamaGamesAPI.get().getResourcePacksManager().forceUrlPack("http://resources.samagames.net/AgarMC.zip", "4d06e751a6bcdaf1bb7e0ff35d22708f", null);
 		
-		this.getServer().getScheduler().runTaskTimer(this, scoreManager::update, 0L, 10L);
+		this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
+			@Override
+			public void run() {
+				scoreManager.update();
+			}
+		}, 0L, 10L);
 		
 		game.setStatus(Status.WAITING_FOR_PLAYERS);
 		game.getBeginTimer().cancel();
@@ -108,5 +121,10 @@ public class AgarMC extends JavaPlugin {
 	public ScoreManager getScoreManager()
 	{
 		return scoreManager;
+	}
+	
+	public boolean isDebug()
+	{
+		return debug;
 	}
 }
