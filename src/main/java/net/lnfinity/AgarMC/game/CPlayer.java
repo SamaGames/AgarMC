@@ -1,23 +1,13 @@
 package net.lnfinity.AgarMC.game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import net.lnfinity.AgarMC.AgarMC;
 import net.lnfinity.AgarMC.cells.PlayerCell;
 import net.lnfinity.AgarMC.util.Utils;
-import net.minecraft.server.v1_9_R2.EntityPlayer;
-import net.minecraft.server.v1_9_R2.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_9_R2.PacketPlayOutPlayerInfo;
-import net.minecraft.server.v1_9_R2.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
-import net.minecraft.server.v1_9_R2.PacketPlayOutPlayerInfo.PlayerInfoData;
 import net.samagames.api.games.GamePlayer;
-import net.samagames.tools.Reflection;
-
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class CPlayer extends GamePlayer {
@@ -74,9 +64,7 @@ public class CPlayer extends GamePlayer {
 
 	public List<PlayerCell> getCells() {
 		List<PlayerCell> list = new ArrayList<>();
-		for (PlayerCell c : this.cells) {
-			list.add(c);
-		}
+		list.addAll(this.cells);
 		return list;
 	}
 
@@ -132,10 +120,10 @@ public class CPlayer extends GamePlayer {
 	}
 	
 	public void ejectMass() {
-		for(PlayerCell cell : getCells()) {
+		getCells().forEach(cell -> {
 			if (cell.isDriving())
 				cell.ejectMass();
-		}
+		});
 	}
 	
 	public String getNick() {
@@ -160,11 +148,11 @@ public class CPlayer extends GamePlayer {
 	
 	public void updateColor()
 	{
-		PacketPlayOutPlayerInfo info = new PacketPlayOutPlayerInfo();
+		/**PacketPlayOutPlayerInfo info = new PacketPlayOutPlayerInfo();
 		try {
 			EntityPlayer entity = ((CraftPlayer)player).getHandle();
-			Reflection.setValue(info, "a", EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
-			PlayerInfoData data = info.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a("{\"text\":\"" + color + player.getName() + "\"}"));
+			Reflection.setValue(info, "a", PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
+			PacketPlayOutPlayerInfo.PlayerInfoData data = info.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a("{\"text\":\"" + color + player.getName() + "\"}"));
 			Reflection.setValue(info, "b", Arrays.asList(data));
 		} catch (NoSuchFieldException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -177,14 +165,14 @@ public class CPlayer extends GamePlayer {
 			PacketPlayOutPlayerInfo info2 = new PacketPlayOutPlayerInfo();
 			try {
 				EntityPlayer entity = ((CraftPlayer)p).getHandle();
-				Reflection.setValue(info2, "a", EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
-				PlayerInfoData data = info2.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a("{\"text\":\"" + cplayer.getColor() + p.getName() + "\"}"));
+				Reflection.setValue(info2, "a", PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_DISPLAY_NAME);
+                PacketPlayOutPlayerInfo.PlayerInfoData data = info2.new PlayerInfoData(entity.getProfile(), entity.ping, entity.playerInteractManager.getGameMode(), ChatSerializer.a("{\"text\":\"" + cplayer.getColor() + p.getName() + "\"}"));
 				Reflection.setValue(info2, "b", Arrays.asList(data));
 			} catch (NoSuchFieldException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
 			((CraftPlayer)player).getHandle().playerConnection.sendPacket(info2);
-		}
+		}*/
 	}
 	
 	public int getCellsCount()

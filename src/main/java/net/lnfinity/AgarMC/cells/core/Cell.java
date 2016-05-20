@@ -91,7 +91,7 @@ public abstract class Cell {
 	}
 	
 	protected void freezeEntity(Entity en){
-	      net.minecraft.server.v1_9_R1.Entity nmsEn = ((CraftEntity) en).getHandle();
+	      net.minecraft.server.v1_9_R2.Entity nmsEn = ((CraftEntity) en).getHandle();
 	      NBTTagCompound compound = new NBTTagCompound();
 	      nmsEn.c(compound);
 	      compound.setByte("NoAI", (byte) 1);
