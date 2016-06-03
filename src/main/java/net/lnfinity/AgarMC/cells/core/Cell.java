@@ -5,6 +5,7 @@ import net.minecraft.server.v1_9_R2.NBTTagCompound;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftArmorStand;
 import org.bukkit.craftbukkit.v1_9_R2.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -75,11 +76,16 @@ public abstract class Cell {
     }
 
     public void setVelocity(Vector vector) {
-        armorStand.setVelocity(vector);
+        ((CraftArmorStand)armorStand).getHandle().motX = vector.getX();
+        ((CraftArmorStand)armorStand).getHandle().motY = vector.getY();
+        ((CraftArmorStand)armorStand).getHandle().motZ = vector.getZ();
     }
 
     public void addVelocity(Vector vector) {
-        armorStand.setVelocity(armorStand.getVelocity().add(vector));
+        Vector vector2 = armorStand.getVelocity().add(vector);
+        ((CraftArmorStand)armorStand).getHandle().motX = vector2.getX();
+        ((CraftArmorStand)armorStand).getHandle().motY = vector2.getY();
+        ((CraftArmorStand)armorStand).getHandle().motZ = vector2.getZ();
     }
 
     public double getX() {
